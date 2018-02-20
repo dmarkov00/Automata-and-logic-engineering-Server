@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.*;
 public class AssignmentController {
 
     @PostMapping("/calculate/{nr}")
-    public String calculateResult(@PathVariable("nr") long assignmentNr) {
+    public String calculateResult(@PathVariable("nr") long assignmentNr, @RequestBody String formula) {
 
-        return "test";
+        return formula + assignmentNr;
     }
+
 }
+
