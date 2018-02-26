@@ -1,30 +1,28 @@
 package ale.server.ale.calculations;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 public class AssignmentOne {
-    private List<String> listOfVariables = new ArrayList<String>();
-    
 
-    void readFormula(String formula) {
+    private FormulaTree formulaTree = new FormulaTree();
 
+
+    public void readFormula(StringBuilder formula) {
+
+
+//        System.out.println("\n");
+
+        formulaTree.addNode(formula.charAt(0));
+
+        formula.deleteCharAt(0);
+
+        if (formula.length() == 0) return;
+
+
+        readFormula(formula);
 
     }
-
-
-    List<String> getListOfDistinctiveVariables()
-
-    {
-
-        return listOfVariables;
-    }
-
-
 }
-
-
-
 
 
 
