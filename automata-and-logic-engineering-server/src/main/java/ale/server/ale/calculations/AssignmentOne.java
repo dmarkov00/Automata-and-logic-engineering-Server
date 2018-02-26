@@ -9,9 +9,6 @@ public class AssignmentOne {
 
     public void readFormula(StringBuilder formula) {
 
-
-//        System.out.println("\n");
-
         formulaTree.addNode(formula.charAt(0));
 
         formula.deleteCharAt(0);
@@ -21,7 +18,12 @@ public class AssignmentOne {
 
         readFormula(formula);
 
+
     }
+    public void generateShit(){
+        formulaTree.generateImageFile();
+    }
+
 }
 
 

@@ -117,6 +117,32 @@ public class FormulaTree {
 
         return parentIndex;
     }
+
+    public void generateImageFile() {
+        Node[] arrayTree = this.arrayTree;
+
+        List<String> lines = new ArrayList<>();
+        lines.add("graph logic {");
+        lines.add("node [ fontname = \"Arial\" ]");
+
+
+        for (int i = 0; i < arrayTree.length; i++) {
+            if (arrayTree[i].getValue() != '\u0000') {
+
+                lines.add("node" + i + "[ label = \"" + arrayTree[i].getValue() + "\" ]");
+
+                if (nodeHasLeftChild(i)) {
+                    lines.add("node" + i + " -- " + "node" + getLeftChildIndex(i));
+                }
+                if (nodeHasRightChild(i)) {
+                    lines.add("node" + i + " -- " + "node" + getRightChildIndex(i));
+                }
+            }
+            lines.add("{");
+
+        }
+        System.out.println(lines);
+    }
 }
 
 
