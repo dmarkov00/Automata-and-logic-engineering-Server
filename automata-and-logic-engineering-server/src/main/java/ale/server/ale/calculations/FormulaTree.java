@@ -1,5 +1,10 @@
 package ale.server.ale.calculations;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -127,7 +132,7 @@ public class FormulaTree {
 
 
         for (int i = 0; i < arrayTree.length; i++) {
-            if (arrayTree[i].getValue() != '\u0000') {
+            if (arrayTree[i] != null) {
 
                 lines.add("node" + i + "[ label = \"" + arrayTree[i].getValue() + "\" ]");
 
@@ -138,8 +143,14 @@ public class FormulaTree {
                     lines.add("node" + i + " -- " + "node" + getRightChildIndex(i));
                 }
             }
-            lines.add("{");
 
+        }
+        lines.add("}");
+        Path out = Paths.get("thisfile.dot");
+        try {
+            Files.write(out, lines, Charset.defaultCharset());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         System.out.println(lines);
     }
