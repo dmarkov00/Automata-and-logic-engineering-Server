@@ -15,15 +15,14 @@ public class FormulaTree {
     private boolean closingBracketDetected = false;
 
     public void addNode(char value) {
-        System.out.println(Arrays.deepToString(this.arrayTree));
 
+        System.out.println(Arrays.toString(arrayTree));
         // Always adding the first symbol on zero position of the array
-        if (arrayTree.length == 0) {
+        if (arrayTree[0] == null) {
             Node newNode = new Node(value);
             arrayTree[0] = newNode;
             return;
         }
-
         // Do not perform any actions when we receive the '(' symbol
         if (value == '(') {
             closingBracketDetected = false;
@@ -76,7 +75,7 @@ public class FormulaTree {
     }
 
     private boolean nodeHasLeftChild(int focusNodeIndex) {
-        int leftChildIndex = 2 * focusNodeIndex + 1;
+        int leftChildIndex = getLeftChildIndex(focusNodeIndex);
 
 
         if (arrayTree[leftChildIndex] == null) {
@@ -87,7 +86,7 @@ public class FormulaTree {
     }
 
     private boolean nodeHasRightChild(int focusNodeIndex) {
-        int rightChildIndex = 2 * focusNodeIndex + 2;
+        int rightChildIndex = getRightChildIndex(focusNodeIndex);
 
 
         if (arrayTree[rightChildIndex] == null) {
@@ -98,15 +97,15 @@ public class FormulaTree {
     }
 
 
-    private int getLeftChildIndex(int parentIndex) {
-        int leftChildIndex = 2 * parentIndex + 1;
+    private int getLeftChildIndex(int index) {
+        int leftChildIndex = 2 * index + 1;
 
         return leftChildIndex;
 
     }
 
-    private int getRightChildIndex(int parentIndex) {
-        int rightChildIndex = 2 * parentIndex + 2;
+    private int getRightChildIndex(int index) {
+        int rightChildIndex = 2 * index + 2;
 
         return rightChildIndex;
 
