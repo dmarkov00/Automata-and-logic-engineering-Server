@@ -21,7 +21,6 @@ public class FormulaTree {
 
     public void addNode(char value) {
 
-        System.out.println(Arrays.toString(arrayTree));
         // Always adding the first symbol on zero position of the array
         if (arrayTree[0] == null) {
             Node newNode = new Node(value);
@@ -146,13 +145,26 @@ public class FormulaTree {
 
         }
         lines.add("}");
-        Path out = Paths.get("graph_result.dot");
+        Path out = Paths.get("./src/main/resources/dot-files/graph.dot");
+
         try {
             Files.write(out, lines, Charset.defaultCharset());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(lines);
+
+        try {
+            Process p = Runtime.getRuntime().exec("dot -Tpng -o./src/main/resources/images/graph.png ./src/main/resources/dot-files/graph.dot");
+
+            try {
+                p.waitFor();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 
