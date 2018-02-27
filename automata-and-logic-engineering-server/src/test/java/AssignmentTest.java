@@ -1,5 +1,5 @@
 import org.junit.Test;
-import ale.server.ale.calculations.AssignmentOne;
+import ale.server.ale.calculations.assignments.AssignmentOne;
 
 public class AssignmentTest {
     AssignmentOne assignment = new AssignmentOne();
@@ -12,7 +12,6 @@ public class AssignmentTest {
 
         assignment.readFormula(formula);
 
-        assignment.generateShit();
 
     }
 

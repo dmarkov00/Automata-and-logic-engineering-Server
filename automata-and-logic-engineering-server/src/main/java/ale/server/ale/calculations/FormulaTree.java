@@ -146,7 +146,7 @@ public class FormulaTree {
 
         }
         lines.add("}");
-        Path out = Paths.get("thisfile.dot");
+        Path out = Paths.get("graph_result.dot");
         try {
             Files.write(out, lines, Charset.defaultCharset());
         } catch (IOException e) {
