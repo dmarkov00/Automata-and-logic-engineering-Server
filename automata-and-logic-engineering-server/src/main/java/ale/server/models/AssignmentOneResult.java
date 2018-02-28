@@ -1,16 +1,25 @@
 package ale.server.models;
 
+
+import org.apache.commons.io.IOUtils;
 import org.springframework.core.io.ClassPathResource;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 public class AssignmentOneResult {
 
-    private InputStream graphImage;
+    private byte[] graphImage;
     private String test;
 
     public AssignmentOneResult() {
-        this.graphImage = getClass().getResourceAsStream("./src/main/resources/images/graph.png");
+
+        InputStream imageInput = getClass().getResourceAsStream("/images/graph.png");
+        try {
+            graphImage = IOUtils.toByteArray(imageInput);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         this.test = "test";
     }
 
@@ -18,7 +27,7 @@ public class AssignmentOneResult {
         return test;
     }
 
-    public InputStream getGraphImage() {
+    public byte[] getGraphImage() {
         return graphImage;
     }
 }

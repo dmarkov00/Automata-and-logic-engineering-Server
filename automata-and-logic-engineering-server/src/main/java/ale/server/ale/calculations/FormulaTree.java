@@ -1,8 +1,6 @@
 package ale.server.ale.calculations;
 
-import ale.server.models.AssignmentOneResult;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -153,10 +151,8 @@ public class FormulaTree {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         try {
             Process p = Runtime.getRuntime().exec("dot -Tpng -o./src/main/resources/images/graph.png ./src/main/resources/dot-files/graph.dot");
-
             try {
                 p.waitFor();
             } catch (InterruptedException e) {

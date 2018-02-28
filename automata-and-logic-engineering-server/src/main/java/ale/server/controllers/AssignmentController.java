@@ -12,7 +12,7 @@ import java.io.UnsupportedEncodingException;
 @RestController
 public class AssignmentController {
 
-    @PostMapping("/calculate/{nr}")
+    @PostMapping(path = "/calculate/{nr}")
     public AssignmentOneResult calculateResult(@PathVariable("nr") long assignmentNr, @RequestBody Formula formula)
 
     {
