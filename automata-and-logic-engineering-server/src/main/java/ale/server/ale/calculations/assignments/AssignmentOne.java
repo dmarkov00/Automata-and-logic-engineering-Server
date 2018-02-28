@@ -3,6 +3,7 @@ package ale.server.ale.calculations.assignments;
 import ale.server.ale.calculations.FormulaTree;
 import ale.server.models.AssignmentOneResult;
 
+import java.io.UnsupportedEncodingException;
 
 public final class AssignmentOne {
 
