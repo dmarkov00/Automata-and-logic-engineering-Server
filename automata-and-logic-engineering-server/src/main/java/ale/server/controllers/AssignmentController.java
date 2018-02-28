@@ -13,7 +13,7 @@ import java.io.UnsupportedEncodingException;
 public class AssignmentController {
 
     @PostMapping("/calculate/{nr}")
-    public AssignmentOneResult calculateResult(@PathVariable("nr") long assignmentNr, @RequestBody Formula formula, HttpServletResponse response)
+    public AssignmentOneResult calculateResult(@PathVariable("nr") long assignmentNr, @RequestBody Formula formula)
 
     {
         String parsedFormula = "";
@@ -26,7 +26,6 @@ public class AssignmentController {
 
         AssignmentOneResult result = AssignmentOne.getAssignmentOneResult(parsedFormula);
 
-        response.setContentType(MediaType.IMAGE_PNG_VALUE);
         return result;
     }
 

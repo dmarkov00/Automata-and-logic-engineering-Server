@@ -2,24 +2,23 @@ package ale.server.models;
 
 import org.springframework.core.io.ClassPathResource;
 
+import java.io.InputStream;
+
 public class AssignmentOneResult {
 
-    private static ClassPathResource graphImage;
+    private InputStream graphImage;
     private String test;
 
     public AssignmentOneResult() {
-        test = "test";
+        this.graphImage = getClass().getResourceAsStream("./src/main/resources/images/graph.png");
+        this.test = "test";
     }
 
     public String getTest() {
         return test;
     }
 
-    public static void setGraphImage(ClassPathResource graphImage) {
-        AssignmentOneResult.graphImage = graphImage;
+    public InputStream getGraphImage() {
+        return graphImage;
     }
-
-//    public static ClassPathResource getGraphImage() {
-//        return graphImage;
-//    }
 }
