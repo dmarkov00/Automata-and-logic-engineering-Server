@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 @RestController
 public class AssignmentController {
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping(path = "/calculate/{nr}")
     public AssignmentOneResult calculateResult(@PathVariable("nr") long assignmentNr, @RequestBody Formula formula)
 
