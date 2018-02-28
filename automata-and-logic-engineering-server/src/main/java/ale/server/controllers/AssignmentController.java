@@ -2,9 +2,7 @@ package ale.server.controllers;
 
 import ale.server.ale.calculations.assignments.AssignmentOne;
 import ale.server.models.AssignmentOneResult;
-import ale.server.models.AssignmentResult;
 import ale.server.models.Formula;
-import com.fasterxml.jackson.databind.node.TextNode;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +19,7 @@ public class AssignmentController {
         String parsedFormula = "";
         try {
             parsedFormula = java.net.URLDecoder.decode(formula.getFormula(), "UTF-8");
+            System.out.println(parsedFormula);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

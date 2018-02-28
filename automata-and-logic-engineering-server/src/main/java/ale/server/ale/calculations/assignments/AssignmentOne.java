@@ -10,20 +10,21 @@ public final class AssignmentOne {
     private static FormulaTree formulaTree = new FormulaTree();
 
 
-    public static void readFormula(StringBuilder formula) {
+    private static void readFormula(StringBuilder formula) {
 
         formulaTree.addNode(formula.charAt(0));
 
         formula.deleteCharAt(0);
 
-        if (formula.length() == 0) return;
-
+        if (formula.length() == 0) {
+            return;
+        }
 
         readFormula(formula);
 
     }
 
-    public static void generateGraph() {
+    private static void generateGraph() {
         formulaTree.generateImageFile();
     }
 
@@ -32,6 +33,7 @@ public final class AssignmentOne {
         StringBuilder formulaString = new StringBuilder(formula);
         AssignmentOne.readFormula(formulaString);
         AssignmentOne.generateGraph();
+        formulaTree = new FormulaTree();
 
         AssignmentOneResult result = new AssignmentOneResult();
         return result;

@@ -19,7 +19,7 @@ public class AssignmentOneResult {
         AssignmentOneResult.graphImage = graphImage;
     }
 
-    public ClassPathResource getGraphImage() {
-        return graphImage;
-    }
+//    public static ClassPathResource getGraphImage() {
+//        return graphImage;
+//    }
 }
