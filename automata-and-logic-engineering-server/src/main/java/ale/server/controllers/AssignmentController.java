@@ -3,10 +3,7 @@ package ale.server.controllers;
 import ale.server.ale.calculations.assignments.AssignmentOne;
 import ale.server.models.AssignmentOneResult;
 import ale.server.models.Formula;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 
 @RestController
