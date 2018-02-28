@@ -1,5 +1,8 @@
 package ale.server.ale.calculations;
 
+import ale.server.models.AssignmentOneResult;
+import org.springframework.core.io.ClassPathResource;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -158,6 +161,7 @@ public class FormulaTree {
 
             try {
                 p.waitFor();
+                AssignmentOneResult.setGraphImage(new ClassPathResource("images/graph.png"));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
