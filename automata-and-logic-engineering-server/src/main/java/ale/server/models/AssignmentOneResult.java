@@ -10,15 +10,13 @@ public class AssignmentOneResult {
     private byte[] graphImage;
 
     public AssignmentOneResult() {
-
         InputStream imageInput = getClass().getResourceAsStream("/images/graph.png");
         try {
-            graphImage = IOUtils.toByteArray(imageInput);
+            this.graphImage = IOUtils.toByteArray(imageInput);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     public byte[] getGraphImage() {
         return graphImage;

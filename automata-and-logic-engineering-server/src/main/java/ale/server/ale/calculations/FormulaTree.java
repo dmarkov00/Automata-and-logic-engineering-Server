@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class FormulaTree {
 
@@ -144,7 +145,7 @@ public class FormulaTree {
 
         }
         lines.add("}");
-        Path out = Paths.get("./src/main/resources/dot-files/graph.dot");
+        Path out = Paths.get("./out/production/resources/dot-files/graph.dot");
 
         try {
             Files.write(out, lines, Charset.defaultCharset());
@@ -152,7 +153,7 @@ public class FormulaTree {
             e.printStackTrace();
         }
         try {
-            Process p = Runtime.getRuntime().exec("dot -Tpng -o./src/main/resources/images/graph.png ./src/main/resources/dot-files/graph.dot");
+            Process p = Runtime.getRuntime().exec("dot -Tpng -o./out/production/resources/images/graph.png ./out/production/resources/dot-files/graph.dot");
             try {
                 p.waitFor();
             } catch (InterruptedException e) {

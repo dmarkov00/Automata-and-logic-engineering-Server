@@ -29,13 +29,13 @@ public final class AssignmentOne {
     public static AssignmentOneResult getAssignmentOneResult(String formula) {
 
         StringBuilder formulaString = new StringBuilder(formula);
+
         AssignmentOne.readFormula(formulaString);
         AssignmentOne.generateGraph();
         formulaTree = new FormulaTree();
 
         AssignmentOneResult result = new AssignmentOneResult();
         return result;
-
     }
 
 }

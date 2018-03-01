@@ -17,13 +17,11 @@ public class AssignmentController {
         String parsedFormula = "";
         try {
             parsedFormula = java.net.URLDecoder.decode(formula.getFormula(), "UTF-8");
-            System.out.println(parsedFormula);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 
         AssignmentOneResult result = AssignmentOne.getAssignmentOneResult(parsedFormula);
-
         return result;
     }
 
