@@ -1,15 +1,5 @@
 package ale.server.ale.calculations;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 public class FormulaTree {
 
 
@@ -116,7 +106,7 @@ public class FormulaTree {
 
     }
 
-    public int getParentIndex(int childIndex) {
+    private int getParentIndex(int childIndex) {
 
         int parentIndex = (int) Math.ceil(childIndex / 2.0) - 1;
 
@@ -127,21 +117,6 @@ public class FormulaTree {
         return arrayTree;
     }
 
-
-    public List<Character> getUniqueVariables() {
-        List<Character> variablesList = new ArrayList<>();
-        List<Character> bannedChars = Arrays.asList('=', ')', '(', '>', ',', '|', '~');
-        for (Node node : arrayTree) {
-            if (node != null) {
-                if (!bannedChars.contains(node.getValue())) {
-                    variablesList.add(node.getValue());
-                    bannedChars.add(node.getValue());
-                }
-
-            }
-        }
-        return variablesList;
-    }
 }
 
 
