@@ -10,6 +10,8 @@ public class AssignmentOneResult {
     private byte[] graphImage;
 
     public AssignmentOneResult() {
+        System.out.println(getClass().getClassLoader().getResource("").getPath());
+        System.out.println("-----------------------------------------------------------------");
         InputStream imageInput = getClass().getResourceAsStream("/images/graph.png");
         try {
             this.graphImage = IOUtils.toByteArray(imageInput);
