@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -165,6 +166,20 @@ public class FormulaTree {
 
     }
 
+    public List<Character> getUniqueVariables() {
+        List<Character> variablesList = new ArrayList<>();
+        List<Character> bannedChars = Arrays.asList('=', ')', '(', '>', ',', '|', '~');
+        for (Node node : arrayTree) {
+            if (node != null) {
+                if (!bannedChars.contains(node.getValue())) {
+                    variablesList.add(node.getValue());
+                    bannedChars.add(node.getValue());
+                }
+
+            }
+        }
+        return variablesList;
+    }
 }
 
 
