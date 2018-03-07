@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 public class FormulaTree {
 
+
     private Node[] arrayTree = new Node[100];
 
     // Initial value 0 - we focus first on the root
@@ -79,7 +80,7 @@ public class FormulaTree {
 
     }
 
-    private boolean nodeHasLeftChild(int focusNodeIndex) {
+    public boolean nodeHasLeftChild(int focusNodeIndex) {
         int leftChildIndex = getLeftChildIndex(focusNodeIndex);
 
 
@@ -90,7 +91,7 @@ public class FormulaTree {
         return true;
     }
 
-    private boolean nodeHasRightChild(int focusNodeIndex) {
+    public boolean nodeHasRightChild(int focusNodeIndex) {
         int rightChildIndex = getRightChildIndex(focusNodeIndex);
 
 
@@ -101,70 +102,31 @@ public class FormulaTree {
         return true;
     }
 
-
-    private int getLeftChildIndex(int index) {
+    public int getLeftChildIndex(int index) {
         int leftChildIndex = 2 * index + 1;
 
         return leftChildIndex;
 
     }
 
-    private int getRightChildIndex(int index) {
+    public int getRightChildIndex(int index) {
         int rightChildIndex = 2 * index + 2;
 
         return rightChildIndex;
 
     }
 
-    private int getParentIndex(int childIndex) {
+    public int getParentIndex(int childIndex) {
 
         int parentIndex = (int) Math.ceil(childIndex / 2.0) - 1;
 
         return parentIndex;
     }
 
-    public void generateGraph() {
-        Node[] arrayTree = this.arrayTree;
-
-        List<String> lines = new ArrayList<>();
-        lines.add("graph logic {");
-        lines.add("node [ fontname = \"Arial\" ]");
-
-
-        for (int i = 0; i < arrayTree.length; i++) {
-            if (arrayTree[i] != null) {
-
-                lines.add("node" + i + "[ label = \"" + arrayTree[i].getValue() + "\" ]");
-
-                if (nodeHasLeftChild(i)) {
-                    lines.add("node" + i + " -- " + "node" + getLeftChildIndex(i));
-                }
-                if (nodeHasRightChild(i)) {
-                    lines.add("node" + i + " -- " + "node" + getRightChildIndex(i));
-                }
-            }
-
-        }
-        lines.add("}");
-        Path out = Paths.get("./out/production/resources/dot-files/graph.dot");
-
-        try {
-            Files.write(out, lines, Charset.defaultCharset());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            Process p = Runtime.getRuntime().exec("dot -Tpng -o./out/production/resources/images/graph.png ./out/production/resources/dot-files/graph.dot");
-            try {
-                p.waitFor();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    public Node[] getArrayTree() {
+        return arrayTree;
     }
+
 
     public List<Character> getUniqueVariables() {
         List<Character> variablesList = new ArrayList<>();

@@ -19,8 +19,7 @@ public class Assignments {
                 return this.generateAssignmentOneResult();
 
             case 2:
-
-                break;
+                return this.generateAssignmentTwoResult();
             case 3:
 
                 break;
@@ -33,6 +32,10 @@ public class Assignments {
             default:
 
         }
+        return null;
+    }
+
+    private AssignmentResult generateAssignmentTwoResult() {
         return null;
     }
 

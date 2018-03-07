@@ -6,9 +6,9 @@ import java.io.UnsupportedEncodingException;
 
 public class Utils {
 
-    public FormulaTree formulaTree;
+    private FormulaTree formulaTree;
 
-    public Utils() {
+    Utils() {
         this.formulaTree = new FormulaTree();
     }
 
@@ -46,6 +46,6 @@ public class Utils {
 
 
     public void generateGraph() {
-        this.formulaTree.generateGraph();
+        Calculations.generateGraph(formulaTree);
     }
 }
