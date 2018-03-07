@@ -5,7 +5,7 @@ import org.apache.commons.io.IOUtils;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class AssignmentOneResult {
+public class AssignmentOneResult implements AssignmentResult {
 
     private byte[] graphImage;
 

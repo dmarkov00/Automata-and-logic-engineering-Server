@@ -1,13 +1,11 @@
-package ale.server.ale.calculations.assignments;
+package ale.server.ale.calculations;
 
-import ale.server.ale.calculations.FormulaTree;
-import ale.server.ale.calculations.Utils;
 import ale.server.models.AssignmentOneResult;
+import ale.server.models.AssignmentResult;
 
-public final class AssignmentOne {
+public final class Assignments {
 
-
-    public static AssignmentOneResult getAssignmentOneResult(String formula) {
+    public static AssignmentResult generateAssignmentOneResult(String formula) {
 
         StringBuilder formulaString = new StringBuilder(formula);
 
@@ -20,29 +18,4 @@ public final class AssignmentOne {
 
         return new AssignmentOneResult();
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
