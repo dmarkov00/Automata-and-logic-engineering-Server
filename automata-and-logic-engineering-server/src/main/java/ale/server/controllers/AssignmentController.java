@@ -12,19 +12,13 @@ public class AssignmentController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping(path = "/calculate/{nr}")
-    public AssignmentResult calculateResult(@PathVariable("nr") long assignmentNr, @RequestBody Formula formula)
+    public AssignmentResult calculateResult(@PathVariable("nr") int assignmentNr, @RequestBody Formula formula)
 
     {
-        String parsedFormula = "";
-        try {
-            parsedFormula = java.net.URLDecoder.decode(formula.getFormula(), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        Assignments assignments = new Assignments();
 
-        AssignmentResult result = Assignments.generateAssignmentOneResult(parsedFormula);
 
-        return result;
+        return assignments.generateAssignmentResult(formula, assignmentNr);
     }
 
 }

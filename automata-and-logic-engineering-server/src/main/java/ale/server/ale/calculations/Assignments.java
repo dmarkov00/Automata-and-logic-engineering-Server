@@ -2,19 +2,43 @@ package ale.server.ale.calculations;
 
 import ale.server.models.AssignmentOneResult;
 import ale.server.models.AssignmentResult;
+import ale.server.models.Formula;
 
-public final class Assignments {
+public class Assignments {
+    private Utils utils;
 
-    public static AssignmentResult generateAssignmentOneResult(String formula) {
+    public AssignmentResult generateAssignmentResult(Formula formula, int assignmentNr) {
 
-        StringBuilder formulaString = new StringBuilder(formula);
 
-        Utils utils = new Utils();
+        utils = new Utils();
 
-        utils.readFormula(formulaString);
+        utils.readFormula(formula);
 
-        utils.formulaTree.generateGraph();
+        switch (assignmentNr) {
+            case 1:
+                return this.generateAssignmentOneResult();
 
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            case 5:
+
+                break;
+            default:
+
+        }
+        return null;
+    }
+
+    private AssignmentResult generateAssignmentOneResult() {
+
+        utils.generateGraph();
 
         return new AssignmentOneResult();
     }
