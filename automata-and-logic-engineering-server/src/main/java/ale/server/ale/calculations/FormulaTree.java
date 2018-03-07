@@ -122,7 +122,7 @@ public class FormulaTree {
         return parentIndex;
     }
 
-    public void generateImageFile() {
+    public void generateGraph() {
         Node[] arrayTree = this.arrayTree;
 
         List<String> lines = new ArrayList<>();
@@ -164,7 +164,6 @@ public class FormulaTree {
         }
 
     }
-
 
 }
 
