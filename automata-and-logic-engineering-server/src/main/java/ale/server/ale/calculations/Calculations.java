@@ -70,4 +70,38 @@ public class Calculations {
         }
         return variablesList;
     }
+
+    public void generateTruthTable(FormulaTree formulaTree) {
+        Node[] arrayTree = formulaTree.getArrayTree();
+        int leftmostNodeIndex = 0;
+        int rightmostNodeIndex = 0;
+
+        // Retrieve leftmost node
+        while (true) {
+
+            if (formulaTree.nodeHasLeftChild(leftmostNodeIndex)) {
+                leftmostNodeIndex = formulaTree.getLeftChildIndex(leftmostNodeIndex);
+            } else {
+                break;
+            }
+        }
+        // Retrieve rightmost node
+        while (true) {
+
+            if (formulaTree.nodeHasRightChild(rightmostNodeIndex)) {
+                rightmostNodeIndex = formulaTree.getRightChildIndex(rightmostNodeIndex);
+            } else {
+                break;
+            }
+        }
+
+        // If the leftmost and the rightmost node have the same parent
+        if (formulaTree.getParentIndex(leftmostNodeIndex) == formulaTree.getParentIndex(rightmostNodeIndex))
+
+
+            for (int i = 0; i < arrayTree.length; i++) {
+
+            }
+    }
+
 }

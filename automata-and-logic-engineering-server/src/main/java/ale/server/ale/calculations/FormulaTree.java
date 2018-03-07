@@ -3,7 +3,7 @@ package ale.server.ale.calculations;
 public class FormulaTree {
 
 
-    private Node[] arrayTree = new Node[100];
+    private Node[] arrayTree = new Node[1000];
 
     // Initial value 0 - we focus first on the root
     private int focusNodeIndex = 0;
@@ -106,7 +106,7 @@ public class FormulaTree {
 
     }
 
-    private int getParentIndex(int childIndex) {
+    public int getParentIndex(int childIndex) {
 
         int parentIndex = (int) Math.ceil(childIndex / 2.0) - 1;
 
