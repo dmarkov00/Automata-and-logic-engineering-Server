@@ -102,7 +102,7 @@ public class Calculations {
             }
     }
 
-    private static List<Map<Character, Byte>> fillTruthTableWithVariableData(FormulaTree formulaTree) {
+    public static List<Map<Character, Byte>> fillTruthTableWithVariableData(FormulaTree formulaTree) {
 
         List<Map<Character, Byte>> truthTable = new ArrayList<>();
         Map<Character, Byte> tableRow = new HashMap<>();
