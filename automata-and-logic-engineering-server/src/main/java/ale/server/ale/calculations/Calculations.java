@@ -5,9 +5,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Calculations {
 
@@ -54,7 +52,7 @@ public class Calculations {
 
     }
 
-    public List<Character> getUniqueVariables(FormulaTree formulaTree) {
+    private static List<Character> getUniqueVariables(FormulaTree formulaTree) {
         Node[] arrayTree = formulaTree.getArrayTree();
 
         List<Character> variablesList = new ArrayList<>();
@@ -104,4 +102,27 @@ public class Calculations {
             }
     }
 
+    private static List<Map<Character, Byte>> fillTruthTableWithVariableData(FormulaTree formulaTree) {
+
+        List<Map<Character, Byte>> truthTable = new ArrayList<>();
+        Map<Character, Byte> tableRow = new HashMap<>();
+
+        List<Character> variablesList = getUniqueVariables(formulaTree);
+        int nrOfVariables = variablesList.size();
+        int nrOfRows = (int) Math.pow(2, nrOfVariables);
+
+        for (int i = 0; i < nrOfRows; i++) {
+            for (int j = nrOfVariables - 1; j >= 0; j--) {
+                byte binaryValue = (byte) ((i / (int) Math.pow(2, j)) % 2);
+
+                tableRow.put(variablesList.get(j), binaryValue);
+
+//                System.out.print((i / (int) Math.pow(2, j)) % 2 + " ");
+            }
+
+            truthTable.add(tableRow);
+            tableRow = new HashMap<>();
+        }
+        return truthTable;
+    }
 }

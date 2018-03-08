@@ -1,11 +1,12 @@
 package ale.server.models;
 
+import java.util.List;
 import java.util.Map;
 
 public class AssignmentTwoResult {
 
     private String[] tableData;
-    private Map<String, Byte>[] tableResults;
+    private List<Map<Character, Byte>> tableResults;
     private String hashCode;
 
     public String[] getTableData() {
@@ -16,11 +17,11 @@ public class AssignmentTwoResult {
         this.tableData = tableData;
     }
 
-    public Map<String, Byte>[] getTableResults() {
+    public List<Map<Character, Byte>> getTableResults() {
         return tableResults;
     }
 
-    public void setTableResults(Map<String, Byte>[] tableResults) {
+    public void setTableResults(List<Map<Character, Byte>> tableResults) {
         this.tableResults = tableResults;
     }
 
