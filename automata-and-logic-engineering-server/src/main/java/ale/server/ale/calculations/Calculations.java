@@ -80,17 +80,17 @@ public class Calculations {
         return bannedChars.contains(node.getValue());
     }
 
-    private byte evaluate(int root) {
 
-        Node[] arrayTree = formulaTree.getArrayTree();
+    private byte evaluateTree(int root, Node[] arrayTree) {
+
 
         if (!formulaTree.nodeHasLeftChild(root) && !formulaTree.nodeHasLeftChild(root)) {
 
             return arrayTree[root].getBinaryValue();
         }
 
-        byte leftBinaryValue = evaluate(formulaTree.getLeftChildIndex(root));
-        byte rightBinaryValue = evaluate(formulaTree.getRightChildIndex(root));
+        byte leftBinaryValue = evaluateTree(formulaTree.getLeftChildIndex(root), arrayTree);
+        byte rightBinaryValue = evaluateTree(formulaTree.getRightChildIndex(root), arrayTree);
 
         return getBinaryResult(arrayTree[root], leftBinaryValue, rightBinaryValue);
 
@@ -124,18 +124,31 @@ public class Calculations {
 
     }
 
-    public void generateTruthTable(FormulaTree formulaTree) {
+    public void generateTruthTable() {
         List<Map<Character, Byte>> truthTable;
 
-        Node[] arrayTree = formulaTree.getArrayTree();
 
+        truthTable = fillTruthTableWithVariableData();
+        for (Map<Character, Byte> tableRow : truthTable) {
+            Node[] arrayTree = setBinaryValuesInArrayTree(tableRow);
+            evaluateTree(0, arrayTree);
 
-        truthTable = fillTruthTableWithVariableData(formulaTree);
-
+        }
 
     }
 
-    private List<Map<Character, Byte>> fillTruthTableWithVariableData(FormulaTree formulaTree) {
+    private Node[] setBinaryValuesInArrayTree(Map<Character, Byte> tableRow) {
+        Node[] arrayTree = formulaTree.getArrayTree();
+        for (Node node : arrayTree) {
+            if (tableRow.containsKey(node.getValue())) {
+                node.setBinaryValue(tableRow.get(node.getValue()));
+            }
+        }
+        return arrayTree;
+
+    }
+
+    private List<Map<Character, Byte>> fillTruthTableWithVariableData() {
 
         List<Map<Character, Byte>> truthTable = new ArrayList<>();
         Map<Character, Byte> tableRow = new HashMap<>();
