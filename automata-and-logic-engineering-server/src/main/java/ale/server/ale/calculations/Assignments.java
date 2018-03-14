@@ -6,6 +6,7 @@ import ale.server.models.Formula;
 
 public class Assignments {
     private Utils utils;
+    private TruthTableBuilder truthTableBuilder;
 
     public AssignmentResult generateAssignmentResult(Formula formula, int assignmentNr) {
 
@@ -36,7 +37,7 @@ public class Assignments {
     }
 
     private AssignmentResult generateAssignmentTwoResult() {
-        return null;
+        AssignmentResult = utils.generateAssignmentTwoResult();
     }
 
     private AssignmentResult generateAssignmentOneResult() {
