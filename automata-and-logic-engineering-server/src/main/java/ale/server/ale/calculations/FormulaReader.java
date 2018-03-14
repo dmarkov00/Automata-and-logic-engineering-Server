@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 
 public class FormulaReader {
     private FormulaTree formulaTree;
+    public static String parsedFormulaString;
 
     FormulaReader() {
         this.formulaTree = new FormulaTree();
@@ -37,7 +38,7 @@ public class FormulaReader {
         String parsedFormula = "";
         try {
             parsedFormula = java.net.URLDecoder.decode(formula.getFormula(), "UTF-8");
-//            parsedFormulaString = parsedFormula;
+            parsedFormulaString = parsedFormula;
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

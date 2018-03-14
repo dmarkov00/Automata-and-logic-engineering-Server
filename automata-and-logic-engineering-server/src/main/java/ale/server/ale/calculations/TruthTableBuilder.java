@@ -24,10 +24,25 @@ class TruthTableBuilder {
 
     }
 
+    /**
+     * Generates a list of values that describe the truth table
+     *
+     * @return
+     */
+    public List<String> generateTableData() {
+        List<String> tableData = new ArrayList<>();
+
+        List<Character> uniqueTreeVariables = Utils.getUniqueTreeVariables(formulaTree);
+        for (Character variable : uniqueTreeVariables) {
+            String stringVariable = variable.toString();
+            tableData.add(stringVariable);
+        }
+        tableData.add(FormulaReader.parsedFormulaString);
+        return tableData;
+    }
 
 
     private byte evaluateTree(int root, Node[] arrayTree) {
-
 
         if (!formulaTree.nodeHasLeftChild(root) && !formulaTree.nodeHasLeftChild(root)) {
 
@@ -71,7 +86,6 @@ class TruthTableBuilder {
         }
 
     }
-
 
 
     private Node[] setBinaryValuesInArrayTree(Map<Character, Byte> tableRow) {

@@ -5,15 +5,15 @@ import java.util.Map;
 
 public class AssignmentTwoResult implements AssignmentResult {
 
-    private String[] tableData;
+    private List<String> tableData;
     private List<Map<Character, Byte>> tableResults;
     private String hashCode;
 
-    public String[] getTableData() {
+    public List<String> getTableData() {
         return tableData;
     }
 
-    public void setTableData(String[] tableData) {
+    public void setTableData(List<String> tableData) {
         this.tableData = tableData;
     }
 
