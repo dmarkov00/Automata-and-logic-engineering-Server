@@ -1,23 +1,16 @@
 package ale.server.ale.calculations;
 
-import com.sun.xml.internal.bind.v2.TODO;
-
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Calculations {
-    Calculations(FormulaTree formulaTree) {
-        this.formulaTree = formulaTree;
+public class GraphGenerator {
 
-    }
-
-    private FormulaTree formulaTree;
-
-    public void generateGraph() {
+    public static void generateGraph(FormulaTree formulaTree) {
         Node[] arrayTree = formulaTree.getArrayTree();
 
         List<String> lines = new ArrayList<>();
@@ -59,13 +52,4 @@ public class Calculations {
         }
 
     }
-
-
-
-    private boolean isNotVariable(Node node) {
-        List<Character> bannedChars = Arrays.asList('=', ')', '(', '>', '&', ',', '|', '~');
-        return bannedChars.contains(node.getValue());
-    }
-
-
 }

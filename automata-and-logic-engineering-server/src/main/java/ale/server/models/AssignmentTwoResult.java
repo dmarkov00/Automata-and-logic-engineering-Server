@@ -3,7 +3,7 @@ package ale.server.models;
 import java.util.List;
 import java.util.Map;
 
-public class AssignmentTwoResult {
+public class AssignmentTwoResult implements AssignmentResult {
 
     private String[] tableData;
     private List<Map<Character, Byte>> tableResults;

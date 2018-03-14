@@ -5,7 +5,7 @@
 //
 //    @Test
 //    public void calculateTruthTableSuccessfully() {
-//        Calculations.fillTruthTableWithVariableData()
+//        AssignmentsCalculations.fillTruthTableWithVariableData()
 //
 //    }
 //}

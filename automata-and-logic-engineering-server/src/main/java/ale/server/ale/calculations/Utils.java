@@ -1,33 +1,12 @@
 package ale.server.ale.calculations;
 
-import ale.server.models.AssignmentTwoResult;
-import ale.server.models.Formula;
+import java.util.Arrays;
+import java.util.List;
 
-import java.io.UnsupportedEncodingException;
+class Utils {
 
-public class Utils {
-
-    private FormulaTree formulaTree;
-//    public static String parsedFormulaString;
-
-    Utils() {
-        this.formulaTree = new FormulaTree();
-    }
-
-
-
-
-    public void generateGraph() {
-        Calculations calculations = new Calculations(formulaTree);
-        calculations.generateGraph();
-    }
-
-    public AssignmentTwoResult generateAssignmentTwoResult() {
-        TruthTableBuilder truthTableBuilder = new TruthTableBuilder(formulaTree);
-
-
-
-        return null;
-
+    private boolean isNotVariable(Node node) {
+        List<Character> bannedChars = Arrays.asList('=', ')', '(', '>', '&', ',', '|', '~');
+        return bannedChars.contains(node.getValue());
     }
 }
