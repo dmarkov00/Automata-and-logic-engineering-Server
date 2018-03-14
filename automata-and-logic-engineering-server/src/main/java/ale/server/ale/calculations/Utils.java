@@ -46,6 +46,7 @@ public class Utils {
 
 
     public void generateGraph() {
-        Calculations.generateGraph(formulaTree);
+        Calculations calculations = new Calculations(formulaTree);
+        calculations.generateGraph();
     }
 }

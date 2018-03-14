@@ -8,8 +8,14 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class Calculations {
+    Calculations(FormulaTree formulaTree) {
+        this.formulaTree = formulaTree;
 
-    public static void generateGraph(FormulaTree formulaTree) {
+    }
+
+    private FormulaTree formulaTree;
+
+    public void generateGraph() {
         Node[] arrayTree = formulaTree.getArrayTree();
 
         List<String> lines = new ArrayList<>();
@@ -52,11 +58,11 @@ public class Calculations {
 
     }
 
-    private static List<Character> getUniqueVariables(FormulaTree formulaTree) {
+    private List<Character> getUniqueVariables(FormulaTree formulaTree) {
         Node[] arrayTree = formulaTree.getArrayTree();
 
         List<Character> variablesList = new ArrayList<>();
-        List<Character> bannedChars = Arrays.asList('=', ')', '(', '>', ',', '|', '~');
+        List<Character> bannedChars = Arrays.asList('=', ')', '(', '>', '&', ',', '|', '~');
         for (Node node : arrayTree) {
             if (node != null) {
                 if (!bannedChars.contains(node.getValue())) {
@@ -69,40 +75,67 @@ public class Calculations {
         return variablesList;
     }
 
-    public void generateTruthTable(FormulaTree formulaTree) {
-        Node[] arrayTree = formulaTree.getArrayTree();
-        int leftmostNodeIndex = 0;
-        int rightmostNodeIndex = 0;
-
-        // Retrieve leftmost node
-        while (true) {
-
-            if (formulaTree.nodeHasLeftChild(leftmostNodeIndex)) {
-                leftmostNodeIndex = formulaTree.getLeftChildIndex(leftmostNodeIndex);
-            } else {
-                break;
-            }
-        }
-        // Retrieve rightmost node
-        while (true) {
-
-            if (formulaTree.nodeHasRightChild(rightmostNodeIndex)) {
-                rightmostNodeIndex = formulaTree.getRightChildIndex(rightmostNodeIndex);
-            } else {
-                break;
-            }
-        }
-
-        // If the leftmost and the rightmost node have the same parent
-        if (formulaTree.getParentIndex(leftmostNodeIndex) == formulaTree.getParentIndex(rightmostNodeIndex))
-
-
-            for (int i = 0; i < arrayTree.length; i++) {
-
-            }
+    private boolean isNotVariable(Node node) {
+        List<Character> bannedChars = Arrays.asList('=', ')', '(', '>', '&', ',', '|', '~');
+        return bannedChars.contains(node.getValue());
     }
 
-    public static List<Map<Character, Byte>> fillTruthTableWithVariableData(FormulaTree formulaTree) {
+    private byte evaluate(int root) {
+
+        Node[] arrayTree = formulaTree.getArrayTree();
+
+        if (!formulaTree.nodeHasLeftChild(root) && !formulaTree.nodeHasLeftChild(root)) {
+
+            return arrayTree[root].getBinaryValue();
+        }
+
+        byte leftBinaryValue = evaluate(formulaTree.getLeftChildIndex(root));
+        byte rightBinaryValue = evaluate(formulaTree.getRightChildIndex(root));
+
+        return getBinaryResult(arrayTree[root], leftBinaryValue, rightBinaryValue);
+
+    }
+
+    private byte getBinaryResult(Node root, byte left, byte right) {
+        char rootValue = root.getValue();
+        switch (rootValue) {
+            case '|':
+                return (byte) (left | right);
+            case '&':
+                return (byte) (left & right);
+            case '~':
+                if (left == 0) {
+                    return 1;
+                } else if (left == 1) {
+                    return 0;
+                }
+            case '=':
+                if (left == right) {
+                    return 0;
+                } else {
+                    return 1;
+                }
+            case '>':
+                if (left == 1 && right == 0) {
+                    return 0;
+                } else return 1;
+
+        }
+
+    }
+
+    public void generateTruthTable(FormulaTree formulaTree) {
+        List<Map<Character, Byte>> truthTable;
+
+        Node[] arrayTree = formulaTree.getArrayTree();
+
+
+        truthTable = fillTruthTableWithVariableData(formulaTree);
+
+
+    }
+
+    private List<Map<Character, Byte>> fillTruthTableWithVariableData(FormulaTree formulaTree) {
 
         List<Map<Character, Byte>> truthTable = new ArrayList<>();
         Map<Character, Byte> tableRow = new HashMap<>();
