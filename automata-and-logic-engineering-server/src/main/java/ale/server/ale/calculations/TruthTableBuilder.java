@@ -26,8 +26,6 @@ class TruthTableBuilder {
 
     /**
      * Generates a list of values that describe the truth table
-     *
-     * @return
      */
     public List<String> generateTableData() {
         List<String> tableData = new ArrayList<>();
@@ -44,6 +42,7 @@ class TruthTableBuilder {
 
     private byte evaluateTree(int root, Node[] arrayTree) {
 
+
         if (!formulaTree.nodeHasLeftChild(root) && !formulaTree.nodeHasLeftChild(root)) {
 
             return arrayTree[root].getBinaryValue();
@@ -52,8 +51,11 @@ class TruthTableBuilder {
         byte leftBinaryValue = evaluateTree(formulaTree.getLeftChildIndex(root), arrayTree);
         byte rightBinaryValue = evaluateTree(formulaTree.getRightChildIndex(root), arrayTree);
 
-        return getBinaryResult(arrayTree[root], leftBinaryValue, rightBinaryValue);
+        if (Utils.isNotVariable(arrayTree[root])) {
+            return getBinaryResult(arrayTree[root], arrayTree[leftBinaryValue].getBinaryValue(), arrayTree[rightBinaryValue].getBinaryValue());
 
+        }
+        return arrayTree[root].getBinaryValue();
     }
 
     private byte getBinaryResult(Node root, byte left, byte right) {

@@ -6,7 +6,7 @@ import java.util.List;
 
 class Utils {
 
-    private static boolean isNotVariable(Node node) {
+    public static boolean isNotVariable(Node node) {
         List<Character> bannedChars = Arrays.asList('=', ')', '(', '>', '&', ',', '|', '~');
         return bannedChars.contains(node.getValue());
     }
