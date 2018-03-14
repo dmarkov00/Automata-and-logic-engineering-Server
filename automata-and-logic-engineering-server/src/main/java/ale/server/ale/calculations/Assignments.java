@@ -10,10 +10,10 @@ public class Assignments {
 
     public AssignmentResult generateAssignmentResult(Formula formula, int assignmentNr) {
 
+        FormulaReader formulaReader = new FormulaReader();
 
-        utils = new Utils();
+        formulaReader.readFormula(formula);
 
-        utils.readFormula(formula);
 
         switch (assignmentNr) {
             case 1:
