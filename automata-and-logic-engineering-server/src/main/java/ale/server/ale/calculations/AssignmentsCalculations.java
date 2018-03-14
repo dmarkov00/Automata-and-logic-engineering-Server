@@ -17,7 +17,7 @@ public class AssignmentsCalculations {
 
     private FormulaTree formulaTree;
 
-    AssignmentsCalculations(Formula formula) {
+    public AssignmentsCalculations(Formula formula) {
         FormulaReader formulaReader = new FormulaReader();
 
         this.formulaTree = formulaReader.readFormula(formula);
