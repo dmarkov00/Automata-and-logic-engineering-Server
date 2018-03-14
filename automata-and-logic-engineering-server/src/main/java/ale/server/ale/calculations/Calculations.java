@@ -1,5 +1,7 @@
 package ale.server.ale.calculations;
 
+import com.sun.xml.internal.bind.v2.TODO;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -120,20 +122,24 @@ public class Calculations {
                     return 0;
                 } else return 1;
 
+            default:
+                return 0;
+            // Fix later
         }
 
     }
 
-    public void generateTruthTable() {
+    public List<Map<Character, Byte>> generateTruthTable() {
         List<Map<Character, Byte>> truthTable;
-
 
         truthTable = fillTruthTableWithVariableData();
         for (Map<Character, Byte> tableRow : truthTable) {
             Node[] arrayTree = setBinaryValuesInArrayTree(tableRow);
-            evaluateTree(0, arrayTree);
+            byte formulaEvaluationResult = evaluateTree(0, arrayTree);
 
+            tableRow.put('=', formulaEvaluationResult);
         }
+        return truthTable;
 
     }
 
