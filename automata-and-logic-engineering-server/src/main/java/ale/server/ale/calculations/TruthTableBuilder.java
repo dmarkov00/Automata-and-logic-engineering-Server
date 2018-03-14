@@ -9,6 +9,22 @@ class TruthTableBuilder {
 
     private FormulaTree formulaTree;
 
+    public List<Map<Character, Byte>> generateTruthTable() {
+        List<Map<Character, Byte>> truthTable;
+
+        truthTable = fillTruthTableWithVariableData();
+        for (Map<Character, Byte> tableRow : truthTable) {
+            Node[] arrayTree = setBinaryValuesInArrayTree(tableRow);
+            byte formulaEvaluationResult = evaluateTree(0, arrayTree);
+
+            // The result is put under the '=' sing in the table row map
+            tableRow.put('=', formulaEvaluationResult);
+        }
+        return truthTable;
+
+    }
+
+
 
     private byte evaluateTree(int root, Node[] arrayTree) {
 
@@ -56,19 +72,7 @@ class TruthTableBuilder {
 
     }
 
-    public List<Map<Character, Byte>> generateTruthTable() {
-        List<Map<Character, Byte>> truthTable;
 
-        truthTable = fillTruthTableWithVariableData();
-        for (Map<Character, Byte> tableRow : truthTable) {
-            Node[] arrayTree = setBinaryValuesInArrayTree(tableRow);
-            byte formulaEvaluationResult = evaluateTree(0, arrayTree);
-
-            tableRow.put('=', formulaEvaluationResult);
-        }
-        return truthTable;
-
-    }
 
     private Node[] setBinaryValuesInArrayTree(Map<Character, Byte> tableRow) {
         Node[] arrayTree = formulaTree.getArrayTree();
@@ -86,7 +90,7 @@ class TruthTableBuilder {
         List<Map<Character, Byte>> truthTable = new ArrayList<>();
         Map<Character, Byte> tableRow = new HashMap<>();
 
-        List<Character> variablesList = getUniqueVariables();
+        List<Character> variablesList = Utils.getUniqueTreeVariables(formulaTree);
         int nrOfVariables = variablesList.size();
         int nrOfRows = (int) Math.pow(2, nrOfVariables);
 
@@ -95,8 +99,6 @@ class TruthTableBuilder {
                 byte binaryValue = (byte) ((i / (int) Math.pow(2, j)) % 2);
 
                 tableRow.put(variablesList.get(j), binaryValue);
-
-//                System.out.print((i / (int) Math.pow(2, j)) % 2 + " ");
             }
 
             truthTable.add(tableRow);
@@ -105,20 +107,5 @@ class TruthTableBuilder {
         return truthTable;
     }
 
-    private List<Character> getUniqueVariables() {
-        Node[] arrayTree = formulaTree.getArrayTree();
 
-        List<Character> variablesList = new ArrayList<>();
-        List<Character> bannedChars = Arrays.asList('=', ')', '(', '>', '&', ',', '|', '~');
-        for (Node node : arrayTree) {
-            if (node != null) {
-                if (!bannedChars.contains(node.getValue())) {
-                    variablesList.add(node.getValue());
-                    bannedChars.add(node.getValue());
-                }
-
-            }
-        }
-        return variablesList;
-    }
 }
