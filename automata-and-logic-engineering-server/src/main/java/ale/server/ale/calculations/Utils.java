@@ -15,7 +15,7 @@ class Utils {
         Node[] arrayTree = formulaTree.getArrayTree();
 
         List<Character> variablesList = new ArrayList<>();
-        List<Character> bannedChars = Arrays.asList('=', ')', '(', '>', '&', ',', '|', '~');
+        List<Character> bannedChars = new ArrayList<>(Arrays.asList('=', ')', '(', '>', '&', ',', '|', '~'));
         for (Node node : arrayTree) {
             if (node != null) {
                 if (!bannedChars.contains(node.getValue())) {

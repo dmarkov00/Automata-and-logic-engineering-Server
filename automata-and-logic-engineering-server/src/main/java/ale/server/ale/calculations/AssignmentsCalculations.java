@@ -27,6 +27,7 @@ public class AssignmentsCalculations {
     public AssignmentTwoResult generateAssignmentTwoResult() {
         TruthTableBuilder truthTableBuilder = new TruthTableBuilder(formulaTree);
 
+        truthTableBuilder.generateTruthTable();
         return null;
     }
 
