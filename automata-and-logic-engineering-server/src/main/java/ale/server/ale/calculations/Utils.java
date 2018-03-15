@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class Utils {
+public class Utils {
 
     public static boolean isNotVariable(Node node) {
         List<Character> bannedChars = Arrays.asList('=', ')', '(', '>', '&', ',', '|', '~');
@@ -26,5 +26,14 @@ class Utils {
             }
         }
         return variablesList;
+    }
+
+    public static List<Character> sortListAlphabetically(List<Character> unsortedVariables) {
+        java.util.Collections.sort(unsortedVariables);
+
+        List<Character> sortedVariables = unsortedVariables;
+
+        return sortedVariables;
+
     }
 }
