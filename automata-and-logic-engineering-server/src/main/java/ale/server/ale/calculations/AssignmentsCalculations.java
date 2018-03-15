@@ -29,7 +29,10 @@ public class AssignmentsCalculations {
 
         List<Map<Character, Byte>> truthTable = truthTableBuilder.generateTruthTable();
         String hashString = truthTableBuilder.generateHash(truthTable);
-        return null;
+        List<String> tableData = truthTableBuilder.generateTableData();
+
+
+        return new AssignmentTwoResult(tableData, truthTable, hashString);
     }
 
     public AssignmentOneResult generateAssignmentOneResult() {

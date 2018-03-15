@@ -1,4 +1,5 @@
 import ale.server.ale.calculations.AssignmentsCalculations;
+import ale.server.models.AssignmentTwoResult;
 import ale.server.models.Formula;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,13 +21,20 @@ public class TruthTableBuilderTest {
     public void truthTableGeneration() {
 
 
-        assignmentsCalculations.generateAssignmentTwoResult();
+        AssignmentTwoResult assignmentTwoResult = assignmentsCalculations.generateAssignmentTwoResult();
+
+
+    }
+
+    @Test
+    public void tableDataGeneration() {
 
     }
 
     @Test
     public void hashGeneration() {
-
+        AssignmentTwoResult assignmentTwoResult = assignmentsCalculations.generateAssignmentTwoResult();
+        assignmentTwoResult.getHashCode();
     }
 
 }
