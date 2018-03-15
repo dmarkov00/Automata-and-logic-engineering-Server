@@ -93,9 +93,12 @@ class TruthTableBuilder {
     private Node[] setBinaryValuesInArrayTree(Map<Character, Byte> tableRow) {
         Node[] arrayTree = formulaTree.getArrayTree();
         for (Node node : arrayTree) {
-            if (tableRow.containsKey(node.getValue())) {
-                node.setBinaryValue(tableRow.get(node.getValue()));
+            if (node != null) {
+                if (tableRow.containsKey(node.getValue())) {
+                    node.setBinaryValue(tableRow.get(node.getValue()));
+                }
             }
+
         }
         return arrayTree;
 
