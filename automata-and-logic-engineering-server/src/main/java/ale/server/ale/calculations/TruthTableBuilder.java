@@ -111,10 +111,10 @@ class TruthTableBuilder {
         int nrOfRows = (int) Math.pow(2, nrOfVariables);
 
         for (int i = 0; i < nrOfRows; i++) {
-            for (int j = nrOfVariables - 1; j >= 0; j--) {
+            for (int j = nrOfVariables - 1, positionCounter = 0; j >= 0; j--, positionCounter++) {
                 byte binaryValue = (byte) ((i / (int) Math.pow(2, j)) % 2);
 
-                tableRow.put(variablesList.get(j), binaryValue);
+                tableRow.put(variablesList.get(positionCounter), binaryValue);
             }
 
             truthTable.add(tableRow);

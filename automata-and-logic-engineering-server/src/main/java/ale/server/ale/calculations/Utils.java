@@ -25,6 +25,8 @@ public class Utils {
 
             }
         }
+        // Sort the variables in the list
+        variablesList = Utils.sortListAlphabetically(variablesList);
         return variablesList;
     }
 

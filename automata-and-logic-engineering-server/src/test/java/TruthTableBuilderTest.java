@@ -11,7 +11,7 @@ public class TruthTableBuilderTest {
     public void truthTableGeneration() {
 
         Formula formulaMock = mock(Formula.class);
-        when(formulaMock.getFormula()).thenReturn("=(>(G,B),|(~(A),Z))");
+        when(formulaMock.getFormula()).thenReturn("=(>(A,B),|(~(A),C))");
 
         AssignmentsCalculations assignmentsCalculations = new AssignmentsCalculations(formulaMock);
 
