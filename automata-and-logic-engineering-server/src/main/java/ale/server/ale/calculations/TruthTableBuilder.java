@@ -42,7 +42,10 @@ class TruthTableBuilder {
 
     private byte evaluateTree(int root, Node[] arrayTree) {
 
+        if (arrayTree[root] == null) {
+            return 0;
 
+        }
         if (!formulaTree.nodeHasLeftChild(root) && !formulaTree.nodeHasLeftChild(root)) {
 
             return arrayTree[root].getBinaryValue();
@@ -56,6 +59,8 @@ class TruthTableBuilder {
 
         }
         return arrayTree[root].getBinaryValue();
+
+
     }
 
     private byte getBinaryResult(Node root, byte left, byte right) {
