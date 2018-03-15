@@ -27,7 +27,8 @@ public class AssignmentsCalculations {
     public AssignmentTwoResult generateAssignmentTwoResult() {
         TruthTableBuilder truthTableBuilder = new TruthTableBuilder(formulaTree);
 
-        truthTableBuilder.generateTruthTable();
+        List<Map<Character, Byte>> truthTable = truthTableBuilder.generateTruthTable();
+        String hashString = truthTableBuilder.generateHash(truthTable);
         return null;
     }
 

@@ -132,4 +132,13 @@ class TruthTableBuilder {
     }
 
 
+    public String generateHash(List<Map<Character, Byte>> truthTable) {
+        String binaryString = "";
+        for (int i = truthTable.size() - 1; i > 0; i--) {
+            binaryString += truthTable.get(i).get('=');
+        }
+        int decimal = Integer.parseInt(binaryString, 2);
+        String hexString = Integer.toString(decimal, 16);
+        return hexString;
+    }
 }
