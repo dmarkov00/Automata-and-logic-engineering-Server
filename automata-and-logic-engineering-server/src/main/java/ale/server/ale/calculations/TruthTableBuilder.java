@@ -9,7 +9,12 @@ class TruthTableBuilder {
 
     private FormulaTree formulaTree;
 
+    /**
+     *
+     * @return
+     */
     public List<Map<Character, Byte>> generateTruthTable() {
+
         List<Map<Character, Byte>> truthTable;
 
         truthTable = fillTruthTableWithVariableData();
@@ -101,15 +106,23 @@ class TruthTableBuilder {
 
     }
 
+    /**
+     * Fills in the truth table with all the different combinations, later used to compute formula result
+     * @return A list of maps. Each list values is a row in the truth table and the map represents the values in this row
+     */
     private List<Map<Character, Byte>> fillTruthTableWithVariableData() {
-
+        // Declarations
         List<Map<Character, Byte>> truthTable = new ArrayList<>();
         Map<Character, Byte> tableRow = new HashMap<>();
 
+        // Extracting the uniques variables from the passed formula
         List<Character> variablesList = Utils.getUniqueTreeVariables(formulaTree);
+
+        // Calculations need to generate the table
         int nrOfVariables = variablesList.size();
         int nrOfRows = (int) Math.pow(2, nrOfVariables);
 
+        // Actual binary values generations
         for (int i = 0; i < nrOfRows; i++) {
             for (int j = nrOfVariables - 1, positionCounter = 0; j >= 0; j--, positionCounter++) {
                 byte binaryValue = (byte) ((i / (int) Math.pow(2, j)) % 2);

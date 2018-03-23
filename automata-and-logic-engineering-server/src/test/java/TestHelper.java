@@ -1,18 +1,15 @@
 import ale.server.models.Formula;
-import org.mockito.Mock;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
-
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 public class TestHelper {
     /**
      * Generates a list of mocked formulas for testing
      * It is required for the Formula object to be mocked because
      * it is retrieved by the Spring API setup, which I'm not calling during the tests
-     *
      * @return List of mocked formulas
      */
 
