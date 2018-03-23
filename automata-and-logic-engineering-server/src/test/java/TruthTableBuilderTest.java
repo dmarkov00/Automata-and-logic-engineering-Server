@@ -4,17 +4,17 @@ import ale.server.models.Formula;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.mockito.Mockito.*;
+import java.util.List;
+
 
 public class TruthTableBuilderTest {
     private AssignmentsCalculations assignmentsCalculations;
+    private List<Formula> formulas;
 
     @Before
     public void setUp() {
-        Formula formulaMock = mock(Formula.class);
-        when(formulaMock.getFormula()).thenReturn("=(>(A,B),|(~(A),C))");
-
-        assignmentsCalculations = new AssignmentsCalculations(formulaMock);
+        formulas = TestHelper.generateFormulaMocks();
+        assignmentsCalculations = new AssignmentsCalculations(formulas.get(0));
     }
 
     @Test

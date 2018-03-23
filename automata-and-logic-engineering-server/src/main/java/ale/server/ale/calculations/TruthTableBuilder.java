@@ -15,7 +15,7 @@ class TruthTableBuilder {
         truthTable = fillTruthTableWithVariableData();
         for (Map<Character, Byte> tableRow : truthTable) {
             Node[] arrayTree = setBinaryValuesInArrayTree(tableRow);
-            byte formulaEvaluationResult = evaluateTree(0, arrayTree);
+            byte formulaEvaluationResult = evaluateTree(0, (byte) 1, arrayTree);
 
             // The result is put under the '=' sing in the table row map
             tableRow.put('=', formulaEvaluationResult);
@@ -40,26 +40,21 @@ class TruthTableBuilder {
     }
 
 
-    private byte evaluateTree(int root, Node[] arrayTree) {
+    private byte evaluateTree(int root, byte evaluatedValue, Node[] arrayTree) {
 
-        if (arrayTree[root] == null) {
-            return 0;
-
-        }
-        if (!formulaTree.nodeHasLeftChild(root) && !formulaTree.nodeHasLeftChild(root)) {
-
-            return arrayTree[root].getBinaryValue();
+        if (!formulaTree.nodeHasLeftChild(root) & !formulaTree.nodeHasRightChild(root)) {
+            return evaluatedValue;
         }
 
-        byte leftBinaryValue = evaluateTree(formulaTree.getLeftChildIndex(root), arrayTree);
-        byte rightBinaryValue = evaluateTree(formulaTree.getRightChildIndex(root), arrayTree);
+        byte leftBinaryValue = evaluateTree(formulaTree.getLeftChildIndex(root), evaluatedValue, arrayTree);
+        byte rightBinaryValue = evaluateTree(formulaTree.getRightChildIndex(root), evaluatedValue, arrayTree);
 
         if (Utils.isNotVariable(arrayTree[root])) {
-            return getBinaryResult(arrayTree[root], arrayTree[leftBinaryValue].getBinaryValue(), arrayTree[rightBinaryValue].getBinaryValue());
-
+            evaluatedValue = getBinaryResult(arrayTree[root], arrayTree[leftBinaryValue].getBinaryValue(), arrayTree[rightBinaryValue].getBinaryValue());
+            return evaluatedValue;
         }
-        return arrayTree[root].getBinaryValue();
-
+        evaluatedValue = arrayTree[root].getBinaryValue();
+        return evaluatedValue;
 
     }
 
@@ -82,14 +77,11 @@ class TruthTableBuilder {
                 } else {
                     return 1;
                 }
-            case '>':
+
+            default:
                 if (left == 1 && right == 0) {
                     return 0;
                 } else return 1;
-
-            default:
-                return 0;
-            // Fix later
         }
 
     }
