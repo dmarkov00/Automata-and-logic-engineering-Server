@@ -2,7 +2,7 @@ package ale.server.ale.calculations;
 
 public class Node {
     private char value;
-    private byte binaryValue;
+    private int binaryValue;
 
     Node(char value) {
 
@@ -10,11 +10,11 @@ public class Node {
         this.binaryValue = 0;
     }
 
-    public byte getBinaryValue() {
+    public int getBinaryValue() {
         return binaryValue;
     }
 
-    public void setBinaryValue(byte binaryValue) {
+    public void setBinaryValue(int binaryValue) {
         this.binaryValue = binaryValue;
     }
 

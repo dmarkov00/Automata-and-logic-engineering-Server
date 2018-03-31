@@ -10,17 +10,16 @@ class TruthTableBuilder {
     private FormulaTree formulaTree;
 
     /**
-     *
      * @return
      */
-    public List<Map<Character, Byte>> generateTruthTable() {
+    public List<Map<Character, Integer>> generateTruthTable() {
 
-        List<Map<Character, Byte>> truthTable;
+        List<Map<Character, Integer>> truthTable;
 
         truthTable = fillTruthTableWithVariableData();
-        for (Map<Character, Byte> tableRow : truthTable) {
+        for (Map<Character, Integer> tableRow : truthTable) {
             Node[] arrayTree = setBinaryValuesInArrayTree(tableRow);
-            byte formulaEvaluationResult = evaluateTree(0, (byte) 1, arrayTree);
+            int formulaEvaluationResult = evaluateTree(0, 1, arrayTree);
 
             // The result is put under the '=' sing in the table row map
             tableRow.put('=', formulaEvaluationResult);
@@ -45,14 +44,14 @@ class TruthTableBuilder {
     }
 
 
-    private byte evaluateTree(int root, byte evaluatedValue, Node[] arrayTree) {
+    private int evaluateTree(int root, int evaluatedValue, Node[] arrayTree) {
 
         if (!formulaTree.nodeHasLeftChild(root) & !formulaTree.nodeHasRightChild(root)) {
             return evaluatedValue;
         }
 
-        byte leftBinaryValue = evaluateTree(formulaTree.getLeftChildIndex(root), evaluatedValue, arrayTree);
-        byte rightBinaryValue = evaluateTree(formulaTree.getRightChildIndex(root), evaluatedValue, arrayTree);
+        int leftBinaryValue = evaluateTree(formulaTree.getLeftChildIndex(root), evaluatedValue, arrayTree);
+        int rightBinaryValue = evaluateTree(formulaTree.getRightChildIndex(root), evaluatedValue, arrayTree);
 
         if (Utils.isNotVariable(arrayTree[root])) {
             evaluatedValue = getBinaryResult(arrayTree[root], arrayTree[leftBinaryValue].getBinaryValue(), arrayTree[rightBinaryValue].getBinaryValue());
@@ -63,7 +62,7 @@ class TruthTableBuilder {
 
     }
 
-    private byte getBinaryResult(Node root, byte left, byte right) {
+    private int getBinaryResult(Node root, int left, int right) {
         char rootValue = root.getValue();
         switch (rootValue) {
             case '|':
@@ -92,7 +91,7 @@ class TruthTableBuilder {
     }
 
 
-    private Node[] setBinaryValuesInArrayTree(Map<Character, Byte> tableRow) {
+    private Node[] setBinaryValuesInArrayTree(Map<Character, Integer> tableRow) {
         Node[] arrayTree = formulaTree.getArrayTree();
         for (Node node : arrayTree) {
             if (node != null) {
@@ -108,12 +107,13 @@ class TruthTableBuilder {
 
     /**
      * Fills in the truth table with all the different combinations, later used to compute formula result
+     *
      * @return A list of maps. Each list values is a row in the truth table and the map represents the values in this row
      */
-    private List<Map<Character, Byte>> fillTruthTableWithVariableData() {
+    private List<Map<Character, Integer>> fillTruthTableWithVariableData() {
         // Declarations
-        List<Map<Character, Byte>> truthTable = new ArrayList<>();
-        Map<Character, Byte> tableRow = new HashMap<>();
+        List<Map<Character, Integer>> truthTable = new ArrayList<>();
+        Map<Character, Integer> tableRow = new HashMap<>();
 
         // Extracting the uniques variables from the passed formula
         List<Character> variablesList = Utils.getUniqueTreeVariables(formulaTree);
@@ -125,7 +125,7 @@ class TruthTableBuilder {
         // Actual binary values generations
         for (int i = 0; i < nrOfRows; i++) {
             for (int j = nrOfVariables - 1, positionCounter = 0; j >= 0; j--, positionCounter++) {
-                byte binaryValue = (byte) ((i / (int) Math.pow(2, j)) % 2);
+                int binaryValue = ((i / (int) Math.pow(2, j)) % 2);
 
                 tableRow.put(variablesList.get(positionCounter), binaryValue);
             }
@@ -137,7 +137,7 @@ class TruthTableBuilder {
     }
 
 
-    public String generateHash(List<Map<Character, Byte>> truthTable) {
+    public String generateHash(List<Map<Character, Integer>> truthTable) {
         String binaryString = "";
         for (int i = truthTable.size() - 1; i > 0; i--) {
             binaryString += truthTable.get(i).get('=');

@@ -4,6 +4,8 @@ import ale.server.models.Formula;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -35,13 +37,21 @@ public class TruthTableBuilderTest {
     @Test
     public void truthTableValuesGeneration() {
         // Retrieve the data
-        List<Map<Character, Byte>> tableResult = assignmentTwoResult.getTableResults();
+        List<Map<Character, Integer>> tableResult = assignmentTwoResult.getTableResults();
 
         assertThat(tableResult.size(), is(8));
 
-//        for (Map<Character, Byte> tableRow : tableResult) {
-//        }
+        List<Integer> rowStub = new ArrayList<>(Arrays.asList(0, 0, 0, 0));
 
+
+        int firstRowAValue = tableResult.get(0).get('A');
+        int firstRowBValue = tableResult.get(0).get('B');
+        int firstRowCValue = tableResult.get(0).get('C');
+        int firstRowResult = tableResult.get(0).get('=');
+        List<Integer> rowValues = new ArrayList<>(Arrays.asList(firstRowAValue, firstRowBValue, firstRowCValue, firstRowResult));
+
+
+        assertThat(rowValues, is(rowStub));
 
     }
 

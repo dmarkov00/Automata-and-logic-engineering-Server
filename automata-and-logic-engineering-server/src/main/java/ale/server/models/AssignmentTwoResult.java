@@ -6,10 +6,10 @@ import java.util.Map;
 public class AssignmentTwoResult implements AssignmentResult {
 
     private List<String> tableData;
-    private List<Map<Character, Byte>> tableResults;
+    private List<Map<Character, Integer>> tableResults;
     private String hashCode;
 
-    public AssignmentTwoResult(List<String> tableData, List<Map<Character, Byte>> tableResults, String hashCode) {
+    public AssignmentTwoResult(List<String> tableData, List<Map<Character, Integer>> tableResults, String hashCode) {
         this.tableData = tableData;
         this.tableResults = tableResults;
         this.hashCode = hashCode;
@@ -19,7 +19,7 @@ public class AssignmentTwoResult implements AssignmentResult {
         return tableData;
     }
 
-    public List<Map<Character, Byte>> getTableResults() {
+    public List<Map<Character, Integer>> getTableResults() {
         return tableResults;
     }
 
