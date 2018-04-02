@@ -82,9 +82,9 @@ class TruthTableBuilder {
                 }
             case '=':
                 if (left == right) {
-                    return 0;
-                } else {
                     return 1;
+                } else {
+                    return 0;
                 }
 
             default:
