@@ -15,11 +15,12 @@ class TruthTableBuilder {
     public List<Map<Character, Integer>> generateTruthTable() {
 
         List<Map<Character, Integer>> truthTable;
-
+        // Add the different binary values for each variable
         truthTable = fillTruthTableWithVariableData();
+
         for (Map<Character, Integer> tableRow : truthTable) {
             Node[] arrayTree = setBinaryValuesInArrayTree(tableRow);
-            int formulaEvaluationResult = evaluateTree(0, 1, arrayTree);
+            int formulaEvaluationResult = evaluateTree(0, 0, arrayTree);
 
             // The result is put under the '=' sing in the table row map
             tableRow.put('=', formulaEvaluationResult);
@@ -44,20 +45,24 @@ class TruthTableBuilder {
     }
 
 
-    private int evaluateTree(int root, int evaluatedValue, Node[] arrayTree) {
+    private int evaluateTree(int rootIndex, int evaluatedValue, Node[] arrayTree) {
 
-        if (!formulaTree.nodeHasLeftChild(root) & !formulaTree.nodeHasRightChild(root)) {
+        if (!formulaTree.nodeHasLeftChild(rootIndex) & !formulaTree.nodeHasRightChild(rootIndex)) {
+            evaluatedValue = arrayTree[rootIndex].getBinaryValue();
+
             return evaluatedValue;
         }
 
-        int leftBinaryValue = evaluateTree(formulaTree.getLeftChildIndex(root), evaluatedValue, arrayTree);
-        int rightBinaryValue = evaluateTree(formulaTree.getRightChildIndex(root), evaluatedValue, arrayTree);
+        int leftBinaryValue = evaluateTree(formulaTree.getLeftChildIndex(rootIndex), evaluatedValue, arrayTree);
+        int rightBinaryValue = evaluateTree(formulaTree.getRightChildIndex(rootIndex), evaluatedValue, arrayTree);
 
-        if (Utils.isNotVariable(arrayTree[root])) {
-            evaluatedValue = getBinaryResult(arrayTree[root], arrayTree[leftBinaryValue].getBinaryValue(), arrayTree[rightBinaryValue].getBinaryValue());
+        if (Utils.isNotVariable(arrayTree[rootIndex])) {
+            evaluatedValue = getBinaryResult(arrayTree[rootIndex], leftBinaryValue, rightBinaryValue);
+            arrayTree[rootIndex].setBinaryValue(evaluatedValue);
+
             return evaluatedValue;
         }
-        evaluatedValue = arrayTree[root].getBinaryValue();
+        evaluatedValue = arrayTree[rootIndex].getBinaryValue();
         return evaluatedValue;
 
     }
@@ -66,9 +71,9 @@ class TruthTableBuilder {
         char rootValue = root.getValue();
         switch (rootValue) {
             case '|':
-                return (byte) (left | right);
+                return left | right;
             case '&':
-                return (byte) (left & right);
+                return left & right;
             case '~':
                 if (left == 0) {
                     return 1;
