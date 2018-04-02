@@ -61,7 +61,7 @@ public class TruthTableBuilderTest {
 
         // Initialization
         Formula basicTestFormula = mock(Formula.class);
-        when(basicTestFormula.getFormula()).thenReturn("&(A,B)");
+        when(basicTestFormula.getFormula()).thenReturn("~A");
 
         AssignmentsCalculations assignmentsCalculations = new AssignmentsCalculations(basicTestFormula);
         assignmentTwoResult = assignmentsCalculations.generateAssignmentTwoResult();

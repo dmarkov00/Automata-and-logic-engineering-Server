@@ -52,9 +52,19 @@ class TruthTableBuilder {
 
             return evaluatedValue;
         }
+        int leftBinaryValue;
+        int rightBinaryValue;
 
-        int leftBinaryValue = evaluateTree(formulaTree.getLeftChildIndex(rootIndex), evaluatedValue, arrayTree);
-        int rightBinaryValue = evaluateTree(formulaTree.getRightChildIndex(rootIndex), evaluatedValue, arrayTree);
+        if (!formulaTree.nodeHasLeftChild(rootIndex)) {
+            leftBinaryValue = -1;
+        } else {
+            leftBinaryValue = evaluateTree(formulaTree.getLeftChildIndex(rootIndex), evaluatedValue, arrayTree);
+        }
+        if (!formulaTree.nodeHasRightChild(rootIndex)) {
+            rightBinaryValue = -1;
+        } else {
+            rightBinaryValue = evaluateTree(formulaTree.getRightChildIndex(rootIndex), evaluatedValue, arrayTree);
+        }
 
         if (Utils.isNotVariable(arrayTree[rootIndex])) {
             evaluatedValue = getBinaryResult(arrayTree[rootIndex], leftBinaryValue, rightBinaryValue);
@@ -75,11 +85,20 @@ class TruthTableBuilder {
             case '&':
                 return left & right;
             case '~':
-                if (left == 0) {
-                    return 1;
-                } else if (left == 1) {
-                    return 0;
+                if (right == -1) {
+                    if (left == 0) {
+                        return 1;
+                    } else if (left == 1) {
+                        return 0;
+                    }
+                } else if (left == -1) {
+                    if (right == 0) {
+                        return 1;
+                    } else if (right == 1) {
+                        return 0;
+                    }
                 }
+
             case '=':
                 if (left == right) {
                     return 1;
