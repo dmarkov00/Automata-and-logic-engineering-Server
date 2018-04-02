@@ -144,7 +144,7 @@ class TruthTableBuilder {
 
     public String generateHash(List<Map<Character, Integer>> truthTable) {
         String binaryString = "";
-        for (int i = truthTable.size() - 1; i > 0; i--) {
+        for (int i = truthTable.size() - 1; i >= 0; i--) {
             binaryString += truthTable.get(i).get('=');
         }
         int decimal = Integer.parseInt(binaryString, 2);
