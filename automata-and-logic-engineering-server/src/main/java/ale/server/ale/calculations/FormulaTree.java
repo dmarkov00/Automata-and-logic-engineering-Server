@@ -8,8 +8,8 @@ public class FormulaTree {
     // Initial value 0 - we focus first on the root
     private int focusNodeIndex = 0;
 
-    // Used when
-    private boolean closingBracketDetected = false;
+
+    private int nrOfClosingBracketsDetected = 0;
 
     public void addNode(char value) {
 
@@ -21,26 +21,33 @@ public class FormulaTree {
         }
         // Do not perform any actions when we receive the '(' symbol
         if (value == '(') {
-            closingBracketDetected = false;
+            nrOfClosingBracketsDetected = 0;
+
             return;
         }
         if (value == ')') {
-            closingBracketDetected = true;
+            nrOfClosingBracketsDetected++;
             return;
         }
 
-        // When the symbols ')' and ',' are received successively we go 2 levels up in the tree
-        if (value == ',' & closingBracketDetected) {
+        // When the symbols ')' and ',' are received successively we go n levels up based on the nr of ')' symbols
+        if (value == ',' & nrOfClosingBracketsDetected > 0) {
+            int nrOfLevelsUp = nrOfClosingBracketsDetected + 1;
+            for (int i = 0; i < nrOfLevelsUp; i++) {
+                focusNodeIndex = getParentIndex(focusNodeIndex);
 
-            focusNodeIndex = getParentIndex(focusNodeIndex);
-            focusNodeIndex = getParentIndex(focusNodeIndex);
-            closingBracketDetected = false;
+            }
+
+            nrOfClosingBracketsDetected = 0;
+
             return;
         }
         // When we receive this symbol the focus goes to the parent node 1 level up in the tree
         if (value == ',') {
             focusNodeIndex = getParentIndex(focusNodeIndex);
-            closingBracketDetected = false;
+
+            nrOfClosingBracketsDetected = 0;
+
             return;
         }
 
@@ -54,8 +61,8 @@ public class FormulaTree {
             arrayTree[leftChildIndex] = newNode;
 
             focusNodeIndex = leftChildIndex;
+            nrOfClosingBracketsDetected = 0;
 
-            closingBracketDetected = false;
             return;
         }
 
@@ -64,8 +71,8 @@ public class FormulaTree {
             arrayTree[rightChildIndex] = newNode;
 
             focusNodeIndex = rightChildIndex;
+            nrOfClosingBracketsDetected = 0;
 
-            closingBracketDetected = false;
         }
 
     }
