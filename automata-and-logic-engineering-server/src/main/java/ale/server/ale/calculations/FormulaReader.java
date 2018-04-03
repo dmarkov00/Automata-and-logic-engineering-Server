@@ -3,6 +3,8 @@ package ale.server.ale.calculations;
 import ale.server.models.Formula;
 
 import java.io.UnsupportedEncodingException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class FormulaReader {
     private FormulaTree formulaTree;
@@ -54,7 +56,17 @@ public class FormulaReader {
 
     }
 
+    /**
+     * Checks if the formula meets the requirements
+     * Tried to implement it with regex, but didn't succeed
+     */
     private boolean isFormulaCorrectlyFormatted(String formulaStr) {
-        return false;
+        if(formulaStr.contains(" "))
+        {
+            return false;
+        }
+
+
+        return true;
     }
 }
