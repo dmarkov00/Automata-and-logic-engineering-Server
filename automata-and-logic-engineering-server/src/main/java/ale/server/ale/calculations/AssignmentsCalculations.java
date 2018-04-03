@@ -21,10 +21,14 @@ public class AssignmentsCalculations {
         FormulaReader formulaReader = new FormulaReader();
 
         this.formulaTree = formulaReader.readFormula(formula);
+
     }
 
 
     public AssignmentTwoResult generateAssignmentTwoResult() {
+        if (formulaTree == null) {
+            return null;
+        }
         TruthTableBuilder truthTableBuilder = new TruthTableBuilder(formulaTree);
 
         List<Map<Character, Integer>> truthTable = truthTableBuilder.generateTruthTable();
@@ -36,6 +40,10 @@ public class AssignmentsCalculations {
     }
 
     public AssignmentOneResult generateAssignmentOneResult() {
+        if (formulaTree == null) {
+            return null;
+        }
+
         GraphGenerator.generateGraph(formulaTree);
 
         return new AssignmentOneResult();

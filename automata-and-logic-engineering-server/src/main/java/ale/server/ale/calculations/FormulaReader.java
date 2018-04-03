@@ -16,7 +16,11 @@ public class FormulaReader {
     public FormulaTree readFormula(Formula formula) {
 
         StringBuilder convertedFormula = this.convertFormula(formula);
-        readConvertedFormula(convertedFormula);
+
+        if (convertedFormula != null) {
+            readConvertedFormula(convertedFormula);
+
+        } else return null;
 
         return formulaTree;
     }
@@ -43,7 +47,14 @@ public class FormulaReader {
             e.printStackTrace();
         }
 
-        return new StringBuilder(parsedFormula);
+        if (isFormulaCorrectlyFormatted(parsedFormulaString)) {
+            return new StringBuilder(parsedFormula);
 
+        } else return null;
+
+    }
+
+    private boolean isFormulaCorrectlyFormatted(String formulaStr) {
+        return false;
     }
 }
