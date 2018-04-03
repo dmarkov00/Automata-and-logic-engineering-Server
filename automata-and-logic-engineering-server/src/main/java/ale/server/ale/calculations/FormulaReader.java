@@ -61,7 +61,7 @@ public class FormulaReader {
      */
     private boolean isFormulaCorrectlyFormatted(String formulaStr) {
         // Remove spaces
-        String trimmedFormula = formulaStr.trim();
+        String trimmedFormula = formulaStr.replaceAll("\\s", "");
 
         return trimmedFormula.matches("[a-zA-Z()~|=&,>]+");
     }
