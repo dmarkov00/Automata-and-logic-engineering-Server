@@ -57,16 +57,12 @@ public class FormulaReader {
     }
 
     /**
-     * Checks if the formula meets the requirements
-     * Tried to implement it with regex, but didn't succeed
+     * Checks if the formula meets the requirements by using a regular expression
      */
     private boolean isFormulaCorrectlyFormatted(String formulaStr) {
-        if(formulaStr.contains(" "))
-        {
-            return false;
-        }
+        // Remove spaces
+        String trimmedFormula = formulaStr.trim();
 
-
-        return true;
+        return trimmedFormula.matches("[a-zA-Z()~|=&,>]+");
     }
 }
