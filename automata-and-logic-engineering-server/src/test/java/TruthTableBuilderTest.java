@@ -21,25 +21,25 @@ public class TruthTableBuilderTest {
     public void setUp() {
 
         Formula complexTestFormula = mock(Formula.class);
-        when(complexTestFormula.getFormula()).thenReturn("=(=( ~(>(~(A),B)), |( ~(A) ,B) ), &(C,=(~(Y),~(Z))))");
+        when(complexTestFormula.getFormula()).thenReturn("=(=(~(>(~(A),B)),|(~(A),B)),&(C,=(~(Y),~(Z))))");
 
 
     }
 
     /**
-     * Test if the values representing the table(the data on top of the table) are correct with a basic complexity formula, this includes:
+     * Test if the values representing the table(the data on top of the table) are correct, this includes:
      * 1. The extracted formula variables are unique
      * 2. The extracted formula variables are sorted alphabetically
      * 3. The formula string is correct
      */
     @Test
-    public void tableDataGenerationWithBasicFormula() {
+    public void tableDataGenerationWithFormula1() {
 
         // Initialization
-        Formula basicTestFormula = mock(Formula.class);
-        when(basicTestFormula.getFormula()).thenReturn("&(A,B)");
+        Formula testFormula = mock(Formula.class);
+        when(testFormula.getFormula()).thenReturn("&(A,B)");
 
-        AssignmentsCalculations assignmentsCalculations = new AssignmentsCalculations(basicTestFormula);
+        AssignmentsCalculations assignmentsCalculations = new AssignmentsCalculations(testFormula);
         assignmentTwoResult = assignmentsCalculations.generateAssignmentTwoResult();
 
         List<String> tableData = assignmentTwoResult.getTableData();
@@ -51,19 +51,19 @@ public class TruthTableBuilderTest {
     }
 
     /**
-     * Test if the truth table values are correct with a basic complexity formula, this includes checks for:
+     * Test if the truth table values are correct, this includes checks for:
      * 1. Number of table rows
      * 2. The generated table binary values for each variable, on certain "interesting" rows
      * 3. The generated table binary result based on the supplied binary values, on certain "interesting" rows
      */
     @Test
-    public void truthTableValuesGenerationWithBasicFormula() {
+    public void truthTableValuesGenerationWithFormula1() {
 
         // Initialization
-        Formula basicTestFormula = mock(Formula.class);
-        when(basicTestFormula.getFormula()).thenReturn("~A");
+        Formula testFormula = mock(Formula.class);
+        when(testFormula.getFormula()).thenReturn("&(A,B)");
 
-        AssignmentsCalculations assignmentsCalculations = new AssignmentsCalculations(basicTestFormula);
+        AssignmentsCalculations assignmentsCalculations = new AssignmentsCalculations(testFormula);
         assignmentTwoResult = assignmentsCalculations.generateAssignmentTwoResult();
 
         // Retrieve the data
@@ -95,21 +95,60 @@ public class TruthTableBuilderTest {
         assertThat(rowValues, is(rowStub));
     }
 
+    /**
+     * Test if the hash code is generated correctly
+     */
+    @Test
+    public void hashGenerationWithFormula1() {
+
+        // Initialization
+        Formula testFormula = mock(Formula.class);
+        when(testFormula.getFormula()).thenReturn("&(A,B)");
+
+        AssignmentsCalculations assignmentsCalculations = new AssignmentsCalculations(testFormula);
+        assignmentTwoResult = assignmentsCalculations.generateAssignmentTwoResult();
+        String hashCode = assignmentTwoResult.getHashCode();
+
+        assertThat(hashCode, is("8"));
+    }
 
     /**
-     * Test if the truth table values are correct with a medium complexity formula, this includes checks for:
+     * Test if the values representing the table(the data on top of the table) are correct
+     * 1. The extracted formula variables are unique
+     * 2. The extracted formula variables are sorted alphabetically
+     * 3. The formula string is correct
+     */
+    @Test
+    public void tableDataGenerationWithFormula2() {
+        // Initialization
+        Formula testFormula = mock(Formula.class);
+        when(testFormula.getFormula()).thenReturn("=(>(A,B),|(~(A),C))");
+
+        AssignmentsCalculations assignmentsCalculations = new AssignmentsCalculations(testFormula);
+        assignmentTwoResult = assignmentsCalculations.generateAssignmentTwoResult();
+
+        List<String> tableData = assignmentTwoResult.getTableData();
+
+        List<String> tableDataStub = new ArrayList<>(Arrays.asList("A", "B", "C", "=(>(A,B),|(~(A),C))"));
+
+        assertThat(tableData, is(tableDataStub));
+
+    }
+
+    /**
+     * Test if the truth table values are correct, this includes checks for:
      * 1. Number of table rows
      * 2. The generated table binary values for each variable, on certain "interesting" rows
      * 3. The generated table result based on the supplied binary values, on certain "interesting" rows
      */
     @Test
-    public void truthTableValuesGenerationWithMediumFormula() {
+    public void truthTableValuesGenerationFormula2() {
 
         // Initialization
-        Formula mediumTestFormula = mock(Formula.class);
-        when(mediumTestFormula.getFormula()).thenReturn("=(>(A,B),|(~(A),C))");
+        Formula testFormula = mock(Formula.class);
+        when(testFormula.getFormula()).thenReturn("=(>(A,B),|(~(A),C))");
 
-        AssignmentsCalculations assignmentsCalculations = new AssignmentsCalculations(mediumTestFormula);
+        AssignmentsCalculations assignmentsCalculations = new AssignmentsCalculations(testFormula);
         assignmentTwoResult = assignmentsCalculations.generateAssignmentTwoResult();
 
         // Retrieve the data
@@ -119,7 +158,7 @@ public class TruthTableBuilderTest {
         assertThat(tableResult.size(), is(8));
 
         // Test for the first row of the table
-        List<Integer> rowStub = new ArrayList<>(Arrays.asList(0, 0, 0, 0));
+        List<Integer> rowStub = new ArrayList<>(Arrays.asList(0, 0, 0, 1));
 
         int firstRowAValue = tableResult.get(0).get('A');
         int firstRowBValue = tableResult.get(0).get('B');
@@ -131,7 +170,7 @@ public class TruthTableBuilderTest {
         assertThat(rowValues, is(rowStub));
 
         // Test for the fifth row of the table
-        rowStub = new ArrayList<>(Arrays.asList(1, 0, 1, 1));
+        rowStub = new ArrayList<>(Arrays.asList(1, 0, 1, 0));
 
         int fifthRowAValue = tableResult.get(5).get('A');
         int fifthRowBValue = tableResult.get(5).get('B');
@@ -143,26 +182,21 @@ public class TruthTableBuilderTest {
         assertThat(rowValues, is(rowStub));
 
     }
-
-    /**
-     * Test if the values representing the table(the data on top of the table) are correct with a medium complexity formula
-     * 1. The extracted formula variables are unique
-     * 2. The extracted formula variables are sorted alphabetically
-     * 3. The formula string is correct
-     */
-    @Test
-    public void tableDataGeneration() {
-
-
-    }
-
     /**
      * Test if the hash code is generated correctly
      */
     @Test
-    public void hashGeneration() {
+    public void hashGenerationWithFormula2() {
 
-        assignmentTwoResult.getHashCode();
+        // Initialization
+        Formula testFormula = mock(Formula.class);
+        when(testFormula.getFormula()).thenReturn("=(>(A,B),|(~(A),C))");
+
+        AssignmentsCalculations assignmentsCalculations = new AssignmentsCalculations(testFormula);
+        assignmentTwoResult = assignmentsCalculations.generateAssignmentTwoResult();
+        String hashCode = assignmentTwoResult.getHashCode();
+
+        assertThat(hashCode, is("9f"));
     }
 
 }

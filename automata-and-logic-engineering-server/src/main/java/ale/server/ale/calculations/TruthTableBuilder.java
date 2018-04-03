@@ -20,13 +20,12 @@ class TruthTableBuilder {
 
         for (Map<Character, Integer> tableRow : truthTable) {
             Node[] arrayTree = setBinaryValuesInArrayTree(tableRow);
-            int formulaEvaluationResult = evaluateTree(0, 0, arrayTree);
+            int formulaEvaluationResult = evaluateTree(0, arrayTree);
 
             // The result is put under the '=' sing in the table row map
             tableRow.put('=', formulaEvaluationResult);
         }
         return truthTable;
-
     }
 
     /**
@@ -45,12 +44,11 @@ class TruthTableBuilder {
     }
 
 
-    private int evaluateTree(int rootIndex, int evaluatedValue, Node[] arrayTree) {
+    private int evaluateTree(int rootIndex, Node[] arrayTree) {
 
         if (!formulaTree.nodeHasLeftChild(rootIndex) & !formulaTree.nodeHasRightChild(rootIndex)) {
-            evaluatedValue = arrayTree[rootIndex].getBinaryValue();
 
-            return evaluatedValue;
+            return arrayTree[rootIndex].getBinaryValue();
         }
         int leftBinaryValue;
         int rightBinaryValue;
@@ -58,22 +56,21 @@ class TruthTableBuilder {
         if (!formulaTree.nodeHasLeftChild(rootIndex)) {
             leftBinaryValue = -1;
         } else {
-            leftBinaryValue = evaluateTree(formulaTree.getLeftChildIndex(rootIndex), evaluatedValue, arrayTree);
+            leftBinaryValue = evaluateTree(formulaTree.getLeftChildIndex(rootIndex), arrayTree);
         }
         if (!formulaTree.nodeHasRightChild(rootIndex)) {
             rightBinaryValue = -1;
         } else {
-            rightBinaryValue = evaluateTree(formulaTree.getRightChildIndex(rootIndex), evaluatedValue, arrayTree);
+            rightBinaryValue = evaluateTree(formulaTree.getRightChildIndex(rootIndex), arrayTree);
         }
 
         if (Utils.isNotVariable(arrayTree[rootIndex])) {
-            evaluatedValue = getBinaryResult(arrayTree[rootIndex], leftBinaryValue, rightBinaryValue);
+            int evaluatedValue = getBinaryResult(arrayTree[rootIndex], leftBinaryValue, rightBinaryValue);
             arrayTree[rootIndex].setBinaryValue(evaluatedValue);
 
             return evaluatedValue;
         }
-        evaluatedValue = arrayTree[rootIndex].getBinaryValue();
-        return evaluatedValue;
+        return arrayTree[rootIndex].getBinaryValue();
 
     }
 
