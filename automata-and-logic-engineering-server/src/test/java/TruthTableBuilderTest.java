@@ -133,7 +133,7 @@ public class TruthTableBuilderTest {
      * 3. The generated table result based on the supplied binary values, on certain "interesting" rows
      */
     @Test
-    public void truthTableValuesGenerationFormula2() {
+    public void truthTableValuesGenerationWithFormula2() {
 
         // Initialization
         Formula testFormula = mock(Formula.class);
@@ -221,7 +221,7 @@ public class TruthTableBuilderTest {
      * 3. The generated table result based on the supplied binary values, on certain "interesting" rows
      */
     @Test
-    public void truthTableValuesGenerationFormula3() {
+    public void truthTableValuesGenerationWithFormula3() {
 
         // Initialization
         Formula testFormula = mock(Formula.class);

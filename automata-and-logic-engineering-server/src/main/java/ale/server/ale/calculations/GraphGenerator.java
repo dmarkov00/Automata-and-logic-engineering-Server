@@ -10,6 +10,11 @@ import java.util.List;
 
 public class GraphGenerator {
 
+
+    /**
+     * Generates image based on the formula tree that is passed
+     * @param formulaTree tree of formula characters
+     */
     public static void generateGraph(FormulaTree formulaTree) {
         Node[] arrayTree = formulaTree.getArrayTree();
 

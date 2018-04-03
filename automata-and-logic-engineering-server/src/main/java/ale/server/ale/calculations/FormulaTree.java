@@ -30,7 +30,7 @@ public class FormulaTree {
             return;
         }
 
-        // When the symbols ')' and ',' are received successively we go n levels up based on the nr of ')' symbols
+        // When the symbols ')' and ',' are received successively we go n levels up based on the counted nr of ')' symbols
         if (value == ',' & nrOfClosingBracketsDetected > 0) {
             int nrOfLevelsUp = nrOfClosingBracketsDetected + 1;
             for (int i = 0; i < nrOfLevelsUp; i++) {
