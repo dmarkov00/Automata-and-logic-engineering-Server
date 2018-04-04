@@ -7,23 +7,25 @@ import java.util.Map;
 
 public class SimplifiedTruthTableBuilder {
 
-    private List<Map<Character, Integer>> unsimplifiedTruthTable;
+    private List<Map<Character, Character>> notSimplifiedTruthTable;
 
     SimplifiedTruthTableBuilder(List<Map<Character, Integer>> truthTable) {
 
-        unsimplifiedTruthTable = truthTable;
+        notSimplifiedTruthTable = this.convertTruthTableType(truthTable);
     }
 
     public List<Map<Character, Character>> simplifyTruthTable() {
+
+
         List<Map<Character, Character>> simplifiedTruthTable = new ArrayList<>();
-        for (int i = 0; i < unsimplifiedTruthTable.size() - 1; i++) {
-            for (int j = i + 1; j < unsimplifiedTruthTable.size(); j++) {
+        for (int i = 0; i < notSimplifiedTruthTable.size() - 1; i++) {
+            for (int j = i + 1; j < notSimplifiedTruthTable.size(); j++) {
                 simplifiedTruthTable.get(i)
             }
 
         }
 
-        for (Map<Character, Integer> tableRow : unsimplifiedTruthTable) {
+        for (Map<Character, Integer> tableRow : notSimplifiedTruthTable) {
 
         }
 
@@ -34,16 +36,16 @@ public class SimplifiedTruthTableBuilder {
      * Retrieves the rows that evaluate to true
      */
     private List<Map<Character, Character>> getTrueResultsFromTruthTable() {
-        List<Map<Character, Character>> unsimplifiedTruthTableWithTrueResults = new ArrayList<>();
+        List<Map<Character, Character>> notSimplifiedTruthTableWithTrueResults = new ArrayList<>();
 
-        for (Map<Character, Integer> tableRow : unsimplifiedTruthTable) {
+        for (Map<Character, Character> tableRow : notSimplifiedTruthTable) {
             if (tableRow.get('=') == 1) {
 
-
-                Map<Character, Character>
-                unsimplifiedTruthTableWithTrueResults.add(()tableRow);
+                notSimplifiedTruthTableWithTrueResults.add(tableRow);
             }
         }
+
+        return notSimplifiedTruthTableWithTrueResults;
     }
 
 
