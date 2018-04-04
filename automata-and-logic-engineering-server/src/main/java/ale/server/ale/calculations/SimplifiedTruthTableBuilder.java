@@ -18,18 +18,22 @@ public class SimplifiedTruthTableBuilder {
 
 
         List<Map<Character, Character>> simplifiedTruthTable = new ArrayList<>();
-        for (int i = 0; i < notSimplifiedTruthTable.size() - 1; i++) {
-            for (int j = i + 1; j < notSimplifiedTruthTable.size(); j++) {
-                simplifiedTruthTable.get(i)
+
+        // Filter out the results that evaluated to false
+        List<Map<Character, Character>> notSimplifiedTruthTableWithTrueResults = getTrueResultsFromTruthTable();
+
+        for (int i = 0; i < notSimplifiedTruthTableWithTrueResults.size() - 1; i++) {
+            for (int j = i + 1; j < notSimplifiedTruthTableWithTrueResults.size(); j++) {
+
+                Map<Character, Character> simplifiedRow = simplifyRows(notSimplifiedTruthTableWithTrueResults.get(i), notSimplifiedTruthTableWithTrueResults.get(j));
+
+                // If it is null the rows cannot be simplified
+                if (simplifiedRow != null) {
+                    simplifiedTruthTable.add(simplifiedRow);
+                }
             }
-
         }
-
-        for (Map<Character, Integer> tableRow : notSimplifiedTruthTable) {
-
-        }
-
-        return null;
+        return simplifiedTruthTable;
     }
 
     /**
@@ -44,11 +48,12 @@ public class SimplifiedTruthTableBuilder {
                 notSimplifiedTruthTableWithTrueResults.add(tableRow);
             }
         }
-
         return notSimplifiedTruthTableWithTrueResults;
     }
 
-
+    /**
+     * Converts truth table from List<Map<Character, Integer>> to List<Map<Character, Character>>
+     */
     private List<Map<Character, Character>> convertTruthTableType(List<Map<Character, Integer>> truthTable) {
         List<Map<Character, Character>> convertedTruthTable = new ArrayList<>();
 
@@ -63,8 +68,9 @@ public class SimplifiedTruthTableBuilder {
         return convertedTruthTable;
     }
 
-    private boolean areRowsSimplifiable(Map<Character, Integer> rowOne, Map<Character, Integer> rowTwo) {
-        return false;
+    private Map<Character, Character> simplifyRows(Map<Character, Character> rowOne, Map<Character, Character> rowTwo) {
+
+        return null;
     }
 
 
