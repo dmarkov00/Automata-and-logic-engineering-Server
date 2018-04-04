@@ -66,7 +66,7 @@ public class FormulaReaderTest {
         // Call random assignment
         AssignmentsCalculations assignmentsCalculations = new AssignmentsCalculations(testFormula);
         AssignmentTwoResult assignmentTwoResult = assignmentsCalculations.generateAssignmentTwoResult();
-
+        // Should not be null
         Assert.assertNotNull(assignmentTwoResult);
 
     }

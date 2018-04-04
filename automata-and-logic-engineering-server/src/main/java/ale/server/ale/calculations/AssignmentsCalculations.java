@@ -1,9 +1,6 @@
 package ale.server.ale.calculations;
 
-import ale.server.models.AssignmentOneResult;
-import ale.server.models.AssignmentResult;
-import ale.server.models.AssignmentTwoResult;
-import ale.server.models.Formula;
+import ale.server.models.*;
 import com.sun.xml.internal.bind.v2.TODO;
 
 import java.io.IOException;
@@ -21,6 +18,22 @@ public class AssignmentsCalculations {
         FormulaReader formulaReader = new FormulaReader();
 
         this.formulaTree = formulaReader.readFormula(formula);
+
+    }
+
+    public AssignmentThreeResult generateAssignmentThreeResult() {
+        if (formulaTree == null) {
+            return null;
+        }
+        AssignmentTwoResult assignmentTwoResult = generateAssignmentTwoResult();
+        List<Map<Character, Integer>> truthTable = assignmentTwoResult.getTableResults();
+
+
+        SimplifiedTruthTableBuilder simplifiedTruthTableBuilder = new SimplifiedTruthTableBuilder(truthTable);
+
+        List<Map<Character, Character>> simplifiedTruthTable = simplifiedTruthTableBuilder.simplifyTruthTable();
+
+        return new AssignmentThreeResult(assignmentTwoResult.getTableData(),simplifiedTruthTable);
 
     }
 

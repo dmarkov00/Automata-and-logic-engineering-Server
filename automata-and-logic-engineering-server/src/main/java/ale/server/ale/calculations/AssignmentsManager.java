@@ -21,8 +21,8 @@ public class AssignmentsManager {
             case 2:
                 return this.getAssignmentTwoResult();
             case 3:
+                return this.getAssignmentThreeResult();
 
-                break;
             case 4:
 
                 break;
@@ -33,6 +33,10 @@ public class AssignmentsManager {
 
         }
         return null;
+    }
+
+    private AssignmentResult getAssignmentThreeResult() {
+        assignmentsCalculations.generateAssignmentThreeResult();
     }
 
     private AssignmentOneResult getAssignmentOneResult() {
