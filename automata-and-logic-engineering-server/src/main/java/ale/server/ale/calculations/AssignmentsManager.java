@@ -1,9 +1,6 @@
 package ale.server.ale.calculations;
 
-import ale.server.models.AssignmentOneResult;
-import ale.server.models.AssignmentResult;
-import ale.server.models.AssignmentTwoResult;
-import ale.server.models.Formula;
+import ale.server.models.*;
 
 public class AssignmentsManager {
 
@@ -35,8 +32,8 @@ public class AssignmentsManager {
         return null;
     }
 
-    private AssignmentResult getAssignmentThreeResult() {
-        assignmentsCalculations.generateAssignmentThreeResult();
+    private AssignmentThreeResult getAssignmentThreeResult() {
+        return assignmentsCalculations.generateAssignmentThreeResult();
     }
 
     private AssignmentOneResult getAssignmentOneResult() {
