@@ -40,7 +40,7 @@ public class SimplifiedTruthTableBuilderTest {
         assertThat(rowValues, is(rowStub));
 
         // Test for the second row of the table
-        rowStub = new ArrayList<>(Arrays.asList('*', '*', '1', '0'));
+        rowStub = new ArrayList<>(Arrays.asList('*', '*', '1', '1'));
 
         char secondRowAValue = simplifiedTruthTableResults.get(0).get('A');
         char secondRowBValue = simplifiedTruthTableResults.get(0).get('B');
@@ -52,7 +52,7 @@ public class SimplifiedTruthTableBuilderTest {
         assertThat(rowValues, is(rowStub));
 
         // Test for the third row of the table
-        rowStub = new ArrayList<>(Arrays.asList('*', '*', '1', '0'));
+        rowStub = new ArrayList<>(Arrays.asList('*', '1', '*', '1'));
 
         char thirdRowAValue = simplifiedTruthTableResults.get(0).get('A');
         char thirdRowBValue = simplifiedTruthTableResults.get(0).get('B');
@@ -63,7 +63,7 @@ public class SimplifiedTruthTableBuilderTest {
 
         assertThat(rowValues, is(rowStub));
         // Test for the forth row of the table
-        rowStub = new ArrayList<>(Arrays.asList('*', '*', '1', '0'));
+        rowStub = new ArrayList<>(Arrays.asList('1', '*', '*', '1'));
 
         char forthRowAValue = simplifiedTruthTableResults.get(0).get('A');
         char forthRowBValue = simplifiedTruthTableResults.get(0).get('B');
@@ -73,6 +73,6 @@ public class SimplifiedTruthTableBuilderTest {
         rowValues = new ArrayList<>(Arrays.asList(forthRowAValue, forthRowBValue, forthRowCValue, forthRowResult));
 
         assertThat(rowValues, is(rowStub));
-        
+
     }
 }
