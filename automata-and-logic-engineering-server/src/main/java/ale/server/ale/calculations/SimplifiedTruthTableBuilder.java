@@ -9,6 +9,9 @@ public class SimplifiedTruthTableBuilder {
 
     private List<Map<Character, Character>> notSimplifiedTruthTable;
 
+    // Used to be merged with the final simplified table
+    private List<Map<Character, Character>> truthTableWithFalseResult = new ArrayList<>();
+
     SimplifiedTruthTableBuilder(List<Map<Character, Integer>> truthTable) {
 
         notSimplifiedTruthTable = this.convertTruthTableType(truthTable);
@@ -22,31 +25,23 @@ public class SimplifiedTruthTableBuilder {
         // Filter out the results that evaluated to false
         List<Map<Character, Character>> notSimplifiedTruthTableWithTrueResults = getTrueResultsFromTruthTable();
 
-        boolean initialSimplificationsDone = false;
-
         while (true) {
             for (int i = 0; i < notSimplifiedTruthTableWithTrueResults.size() - 1; i++) {
                 for (int j = i + 1; j < notSimplifiedTruthTableWithTrueResults.size(); j++) {
 
+                    // Retrieve simplified row from two other rows
+                    Map<Character, Character> simplifiedRow = simplifyRows(notSimplifiedTruthTableWithTrueResults.get(i), notSimplifiedTruthTableWithTrueResults.get(j));
 
-                    if (initialSimplificationsDone) {
-                        Map<Character, Character> simplifiedRow = simplifyRowsWithAsterisks(notSimplifiedTruthTableWithTrueResults.get(i), notSimplifiedTruthTableWithTrueResults.get(j));
-
-
-                    } else {
-                        Map<Character, Character> simplifiedRow = simplifyRowsWithoutAsterisks(notSimplifiedTruthTableWithTrueResults.get(i), notSimplifiedTruthTableWithTrueResults.get(j));
-
-                        // If the row couldn't be simplified a null is returned
-                        if (simplifiedRow != null) {
-                            if (!isDuplicate(simplifiedTruthTable, simplifiedRow)) {
-                                simplifiedTruthTable.add(simplifiedRow);
-                            }
+                    // If the row couldn't be simplified a null is returned
+                    if (simplifiedRow != null) {
+                        if (!isDuplicate(simplifiedTruthTable, simplifiedRow)) {
+                            simplifiedTruthTable.add(simplifiedRow);
                         }
                     }
-
                 }
             }
-//            initialSimplificationsDone = true;
+
+            // If nothing was simplified
             if (simplifiedTruthTable.size() == 0) {
                 simplifiedTruthTable = notSimplifiedTruthTableWithTrueResults;
                 break;
@@ -55,9 +50,18 @@ public class SimplifiedTruthTableBuilder {
                 simplifiedTruthTable = new ArrayList<>();
             }
         }
-        return simplifiedTruthTable;
+
+        // The final result consists of the combination between the false results and the simplified true results
+        List<Map<Character, Character>> finalResult = new ArrayList<>();
+        finalResult.addAll(truthTableWithFalseResult);
+        finalResult.addAll(simplifiedTruthTable);
+
+        return finalResult;
     }
 
+    /**
+     * Checks for duplicated simplifications
+     */
     private boolean isDuplicate(List<Map<Character, Character>> simplifiedTruthTable, Map<Character, Character> row) {
         int differentValuesCount;
         for (Map<Character, Character> tableRow : simplifiedTruthTable) {
@@ -79,11 +83,8 @@ public class SimplifiedTruthTableBuilder {
         return false;
     }
 
-    private Map<Character, Character> simplifyRowsWithAsterisks(Map<Character, Character> rowOne, Map<Character, Character> rowTwo) {
-        return null;
-    }
 
-    private Map<Character, Character> simplifyRowsWithoutAsterisks(Map<Character, Character> rowOne, Map<Character, Character> rowTwo) {
+    private Map<Character, Character> simplifyRows(Map<Character, Character> rowOne, Map<Character, Character> rowTwo) {
 
         int differentValuesCount = 0;
         char differentValueKey = ' ';
@@ -115,6 +116,8 @@ public class SimplifiedTruthTableBuilder {
             if (tableRow.get('=') == 1) {
 
                 notSimplifiedTruthTableWithTrueResults.add(tableRow);
+            } else {
+                truthTableWithFalseResult.add(tableRow);
             }
         }
         return notSimplifiedTruthTableWithTrueResults;
