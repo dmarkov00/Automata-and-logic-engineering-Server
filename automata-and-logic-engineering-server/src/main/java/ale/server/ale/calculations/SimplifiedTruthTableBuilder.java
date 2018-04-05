@@ -22,17 +22,25 @@ public class SimplifiedTruthTableBuilder {
         // Filter out the results that evaluated to false
         List<Map<Character, Character>> notSimplifiedTruthTableWithTrueResults = getTrueResultsFromTruthTable();
 
-        for (int i = 0; i < notSimplifiedTruthTableWithTrueResults.size() - 1; i++) {
-            for (int j = i + 1; j < notSimplifiedTruthTableWithTrueResults.size(); j++) {
+        // Set the initial value of the simplified truth table
+//
 
-                Map<Character, Character> simplifiedRow = simplifyRows(notSimplifiedTruthTableWithTrueResults.get(i), notSimplifiedTruthTableWithTrueResults.get(j));
+        while (true) {
+            for (int i = 0; i < notSimplifiedTruthTableWithTrueResults.size() - 1; i++) {
+                for (int j = i + 1; j < notSimplifiedTruthTableWithTrueResults.size(); j++) {
 
-                // If it is null the rows cannot be simplified
-                if (simplifiedRow != null) {
-                    simplifiedTruthTable.add(simplifiedRow);
+
                 }
             }
+
+            if (simplifiedTruthTable.size() == 0) {
+                break;
+            } else {
+                notSimplifiedTruthTableWithTrueResults = simplifiedTruthTable;
+                simplifiedTruthTable = new ArrayList<>();
+            }
         }
+
         return simplifiedTruthTable;
     }
 
@@ -66,11 +74,6 @@ public class SimplifiedTruthTableBuilder {
             convertedTruthTable.add(convertedMap);
         }
         return convertedTruthTable;
-    }
-
-    private Map<Character, Character> simplifyRows(Map<Character, Character> rowOne, Map<Character, Character> rowTwo) {
-
-        return null;
     }
 
 
