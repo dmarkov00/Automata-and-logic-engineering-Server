@@ -22,14 +22,20 @@ public class SimplifiedTruthTableBuilder {
         // Filter out the results that evaluated to false
         List<Map<Character, Character>> notSimplifiedTruthTableWithTrueResults = getTrueResultsFromTruthTable();
 
-        // Set the initial value of the simplified truth table
-//
-
         while (true) {
             for (int i = 0; i < notSimplifiedTruthTableWithTrueResults.size() - 1; i++) {
                 for (int j = i + 1; j < notSimplifiedTruthTableWithTrueResults.size(); j++) {
 
+                    Map<Character, Character> simplifiedRow = simplifyRows(notSimplifiedTruthTableWithTrueResults.get(i), notSimplifiedTruthTableWithTrueResults.get(j));
 
+                    // If the row couldn't be simplified a null is returned
+                    if (simplifiedRow != null) {
+
+                        // Verify every new row with the truth table
+                        if (verifySimplifiedRowWithTruthTable(simplifiedRow)) {
+                            simplifiedTruthTable.add(simplifiedRow);
+                        }
+                    }
                 }
             }
 
