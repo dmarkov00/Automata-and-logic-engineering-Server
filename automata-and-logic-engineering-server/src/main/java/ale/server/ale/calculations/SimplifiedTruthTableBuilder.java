@@ -22,57 +22,88 @@ public class SimplifiedTruthTableBuilder {
         // Filter out the results that evaluated to false
         List<Map<Character, Character>> notSimplifiedTruthTableWithTrueResults = getTrueResultsFromTruthTable();
 
+        boolean initialSimplificationsDone = false;
+
         while (true) {
             for (int i = 0; i < notSimplifiedTruthTableWithTrueResults.size() - 1; i++) {
                 for (int j = i + 1; j < notSimplifiedTruthTableWithTrueResults.size(); j++) {
 
-                    Map<Character, Character> simplifiedRow = simplifyRows(notSimplifiedTruthTableWithTrueResults.get(i), notSimplifiedTruthTableWithTrueResults.get(j));
 
-                    // If the row couldn't be simplified a null is returned
-                    if (simplifiedRow != null) {
+                    if (initialSimplificationsDone) {
+                        Map<Character, Character> simplifiedRow = simplifyRowsWithAsterisks(notSimplifiedTruthTableWithTrueResults.get(i), notSimplifiedTruthTableWithTrueResults.get(j));
 
-                        // Verify every new row with the truth table
-                        if (verifySimplifiedRowWithTruthTable(simplifiedRow)) {
-                            simplifiedTruthTable.add(simplifiedRow);
+
+                    } else {
+                        Map<Character, Character> simplifiedRow = simplifyRowsWithoutAsterisks(notSimplifiedTruthTableWithTrueResults.get(i), notSimplifiedTruthTableWithTrueResults.get(j));
+
+                        // If the row couldn't be simplified a null is returned
+                        if (simplifiedRow != null) {
+                            if (!isDuplicate(simplifiedTruthTable, simplifiedRow)) {
+                                simplifiedTruthTable.add(simplifiedRow);
+                            }
                         }
                     }
+
                 }
             }
-
+//            initialSimplificationsDone = true;
             if (simplifiedTruthTable.size() == 0) {
+                simplifiedTruthTable = notSimplifiedTruthTableWithTrueResults;
                 break;
             } else {
                 notSimplifiedTruthTableWithTrueResults = simplifiedTruthTable;
                 simplifiedTruthTable = new ArrayList<>();
             }
         }
-
         return simplifiedTruthTable;
     }
 
-    private Map<Character, Character> simplifyRows(Map<Character, Character> rowOne, Map<Character, Character> rowTwo) {
-        if (rowContainsAsterisk) {
-            return null;
-
-        } else {
-            int differentValuesCount = 0;
-            char differentValueKey = ' ';
-            for (char key : rowOne.keySet()) {
-                if (rowOne.get(key) != rowTwo.get(key)) {
+    private boolean isDuplicate(List<Map<Character, Character>> simplifiedTruthTable, Map<Character, Character> row) {
+        int differentValuesCount;
+        for (Map<Character, Character> tableRow : simplifiedTruthTable) {
+            differentValuesCount = 0;
+            for (Character key : tableRow.keySet()) {
+                if (tableRow.get(key) != row.get(key)) {
                     differentValuesCount++;
-                    differentValueKey = key;
                 }
-
             }
-            if (differentValuesCount == 1) {
-                rowOne.replace(differentValueKey, '*');
-
-                Map<Character, Character> simplifiedRow = rowOne;
-                return simplifiedRow;
+            if (differentValuesCount == 0) {
+                return true;
             }
-            return null;
         }
+        return false;
     }
+
+
+    private boolean verifySimplifiedRowWithTruthTable(Map<Character, Character> simplifiedRow) {
+        return false;
+    }
+
+    private Map<Character, Character> simplifyRowsWithAsterisks(Map<Character, Character> rowOne, Map<Character, Character> rowTwo) {
+        return null;
+    }
+
+    private Map<Character, Character> simplifyRowsWithoutAsterisks(Map<Character, Character> rowOne, Map<Character, Character> rowTwo) {
+
+        int differentValuesCount = 0;
+        char differentValueKey = ' ';
+        for (char key : rowOne.keySet()) {
+            if (rowOne.get(key) != rowTwo.get(key)) {
+                differentValuesCount++;
+                differentValueKey = key;
+            }
+
+        }
+        if (differentValuesCount == 1) {
+
+            Map<Character, Character> simplifiedRow = new HashMap<>(rowOne);
+            simplifiedRow.replace(differentValueKey, '*');
+
+            return simplifiedRow;
+        }
+        return null;
+    }
+
 
     /**
      * Retrieves the rows that evaluate to true
