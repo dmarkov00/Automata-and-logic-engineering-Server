@@ -50,6 +50,30 @@ public class SimplifiedTruthTableBuilder {
         return simplifiedTruthTable;
     }
 
+    private Map<Character, Character> simplifyRows(Map<Character, Character> rowOne, Map<Character, Character> rowTwo) {
+        if (rowContainsAsterisk) {
+            return null;
+
+        } else {
+            int differentValuesCount = 0;
+            char differentValueKey = ' ';
+            for (char key : rowOne.keySet()) {
+                if (rowOne.get(key) != rowTwo.get(key)) {
+                    differentValuesCount++;
+                    differentValueKey = key;
+                }
+
+            }
+            if (differentValuesCount == 1) {
+                rowOne.replace(differentValueKey, '*');
+
+                Map<Character, Character> simplifiedRow = rowOne;
+                return simplifiedRow;
+            }
+            return null;
+        }
+    }
+
     /**
      * Retrieves the rows that evaluate to true
      */
