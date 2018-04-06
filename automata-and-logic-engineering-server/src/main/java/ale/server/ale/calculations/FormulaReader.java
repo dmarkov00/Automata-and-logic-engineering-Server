@@ -44,13 +44,15 @@ public class FormulaReader {
         String parsedFormula = "";
         try {
             parsedFormula = java.net.URLDecoder.decode(formula.getFormula(), "UTF-8");
-            parsedFormulaString = parsedFormula;
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+        // Remove spaces
+        String trimmedFormula = parsedFormula.replaceAll("\\s", "");
 
-        if (isFormulaCorrectlyFormatted(parsedFormulaString)) {
-            return new StringBuilder(parsedFormula);
+        if (isFormulaCorrectlyFormatted(trimmedFormula)) {
+            parsedFormulaString = trimmedFormula;
+            return new StringBuilder(trimmedFormula);
 
         } else return null;
 
@@ -61,8 +63,7 @@ public class FormulaReader {
      */
     private boolean isFormulaCorrectlyFormatted(String formulaStr) {
         // Remove spaces
-        String trimmedFormula = formulaStr.replaceAll("\\s", "");
 
-        return trimmedFormula.matches("[a-zA-Z()~|=&,>]+");
+        return formulaStr.matches("[a-zA-Z()~|=&,>]+");
     }
 }
