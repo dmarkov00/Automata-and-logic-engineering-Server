@@ -42,10 +42,10 @@ public class SimplifiedTruthTableBuilderTest {
         // Test for the second row of the table
         rowStub = new ArrayList<>(Arrays.asList('*', '*', '1', '1'));
 
-        char secondRowAValue = simplifiedTruthTableResults.get(0).get('A');
-        char secondRowBValue = simplifiedTruthTableResults.get(0).get('B');
-        char secondRowCValue = simplifiedTruthTableResults.get(0).get('C');
-        char secondRowResult = simplifiedTruthTableResults.get(0).get('=');
+        char secondRowAValue = simplifiedTruthTableResults.get(1).get('A');
+        char secondRowBValue = simplifiedTruthTableResults.get(1).get('B');
+        char secondRowCValue = simplifiedTruthTableResults.get(1).get('C');
+        char secondRowResult = simplifiedTruthTableResults.get(1).get('=');
 
         rowValues = new ArrayList<>(Arrays.asList(secondRowAValue, secondRowBValue, secondRowCValue, secondRowResult));
 
@@ -54,10 +54,10 @@ public class SimplifiedTruthTableBuilderTest {
         // Test for the third row of the table
         rowStub = new ArrayList<>(Arrays.asList('*', '1', '*', '1'));
 
-        char thirdRowAValue = simplifiedTruthTableResults.get(0).get('A');
-        char thirdRowBValue = simplifiedTruthTableResults.get(0).get('B');
-        char thirdRowCValue = simplifiedTruthTableResults.get(0).get('C');
-        char thirdRowResult = simplifiedTruthTableResults.get(0).get('=');
+        char thirdRowAValue = simplifiedTruthTableResults.get(2).get('A');
+        char thirdRowBValue = simplifiedTruthTableResults.get(2).get('B');
+        char thirdRowCValue = simplifiedTruthTableResults.get(2).get('C');
+        char thirdRowResult = simplifiedTruthTableResults.get(2).get('=');
 
         rowValues = new ArrayList<>(Arrays.asList(thirdRowAValue, thirdRowBValue, thirdRowCValue, thirdRowResult));
 
@@ -65,14 +65,13 @@ public class SimplifiedTruthTableBuilderTest {
         // Test for the forth row of the table
         rowStub = new ArrayList<>(Arrays.asList('1', '*', '*', '1'));
 
-        char forthRowAValue = simplifiedTruthTableResults.get(0).get('A');
-        char forthRowBValue = simplifiedTruthTableResults.get(0).get('B');
-        char forthRowCValue = simplifiedTruthTableResults.get(0).get('C');
-        char forthRowResult = simplifiedTruthTableResults.get(0).get('=');
+        char forthRowAValue = simplifiedTruthTableResults.get(3).get('A');
+        char forthRowBValue = simplifiedTruthTableResults.get(3).get('B');
+        char forthRowCValue = simplifiedTruthTableResults.get(3).get('C');
+        char forthRowResult = simplifiedTruthTableResults.get(3).get('=');
 
         rowValues = new ArrayList<>(Arrays.asList(forthRowAValue, forthRowBValue, forthRowCValue, forthRowResult));
 
         assertThat(rowValues, is(rowStub));
-
     }
 }

@@ -79,10 +79,6 @@ public class SimplifiedTruthTableBuilder {
     }
 
 
-    private boolean verifySimplifiedRowWithTruthTable(Map<Character, Character> simplifiedRow) {
-        return false;
-    }
-
 
     private Map<Character, Character> simplifyRows(Map<Character, Character> rowOne, Map<Character, Character> rowTwo) {
 
@@ -113,7 +109,7 @@ public class SimplifiedTruthTableBuilder {
         List<Map<Character, Character>> notSimplifiedTruthTableWithTrueResults = new ArrayList<>();
 
         for (Map<Character, Character> tableRow : notSimplifiedTruthTable) {
-            if (tableRow.get('=') == 1) {
+            if (tableRow.get('=') == '1') {
 
                 notSimplifiedTruthTableWithTrueResults.add(tableRow);
             } else {
@@ -133,7 +129,7 @@ public class SimplifiedTruthTableBuilder {
 
             Map<Character, Character> convertedMap = new HashMap<>();
             for (Map.Entry<Character, Integer> entry : tableRow.entrySet()) {
-                convertedMap.put(entry.getKey(), (char) ((int) entry.getValue()));
+                convertedMap.put(entry.getKey(), (char) (entry.getValue() + '0'));
             }
             convertedTruthTable.add(convertedMap);
         }
