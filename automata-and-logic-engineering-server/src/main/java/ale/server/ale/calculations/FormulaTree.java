@@ -3,7 +3,7 @@ package ale.server.ale.calculations;
 public class FormulaTree {
 
 
-    private Node[] arrayTree = new Node[1000];
+    private Node[] arrayTree = new Node[10000];
 
     // Initial value 0 - we focus first on the root
     private int focusNodeIndex = 0;
