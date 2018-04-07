@@ -1,13 +1,7 @@
 package ale.server.ale.calculations;
 
 import ale.server.models.*;
-import com.sun.xml.internal.bind.v2.TODO;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class AssignmentsCalculations {
@@ -33,7 +27,7 @@ public class AssignmentsCalculations {
 
         List<Map<Character, Character>> simplifiedTruthTable = simplifiedTruthTableBuilder.simplifyTruthTable();
 
-        return new AssignmentThreeResult(assignmentTwoResult.getTableData(),simplifiedTruthTable);
+        return new AssignmentThreeResult(assignmentTwoResult.getTableData(), simplifiedTruthTable);
 
     }
 
@@ -60,5 +54,23 @@ public class AssignmentsCalculations {
         GraphGenerator.generateGraph(formulaTree);
 
         return new AssignmentOneResult();
+    }
+
+    public AssignmentFourResult generateAssignmentFourResult() {
+        if (formulaTree == null) {
+            return null;
+        }
+        AssignmentTwoResult assignmentTwoResult = generateAssignmentTwoResult();
+        List<Map<Character, Integer>> truthTable = assignmentTwoResult.getTableResults();
+
+        AssignmentThreeResult assignmentThreeResult = generateAssignmentThreeResult();
+        List<Map<Character, Character>> simplifiedTruthTable = assignmentThreeResult.getSimplifiedTableResults();
+
+        DisjunctiveNormalForm disjunctiveNormalForm = new DisjunctiveNormalForm(truthTable, simplifiedTruthTable);
+
+        List<String> disjunctiveNormalForms = disjunctiveNormalForm.generateDisjunctiveNormalForms();
+
+        return new AssignmentFourResult(disjunctiveNormalForms);
+
     }
 }
