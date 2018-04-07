@@ -1,8 +1,6 @@
 package ale.server.ale.calculations;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Utils {
 
@@ -46,5 +44,22 @@ public class Utils {
 
         return sortedVariables;
 
+    }
+
+    /**
+     * Converts truth table from List<Map<Character, Integer>> to List<Map<Character, Character>>
+     */
+    public static List<Map<Character, Character>> convertTruthTableType(List<Map<Character, Integer>> truthTable) {
+        List<Map<Character, Character>> convertedTruthTable = new ArrayList<>();
+
+        for (Map<Character, Integer> tableRow : truthTable) {
+
+            Map<Character, Character> convertedMap = new HashMap<>();
+            for (Map.Entry<Character, Integer> entry : tableRow.entrySet()) {
+                convertedMap.put(entry.getKey(), (char) (entry.getValue() + '0'));
+            }
+            convertedTruthTable.add(convertedMap);
+        }
+        return convertedTruthTable;
     }
 }

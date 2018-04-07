@@ -19,7 +19,7 @@ public class SimplifiedTruthTableBuilder {
 
     SimplifiedTruthTableBuilder(List<Map<Character, Integer>> truthTable) {
 
-        notSimplifiedTruthTable = this.convertTruthTableType(truthTable);
+        notSimplifiedTruthTable = Utils.convertTruthTableType(truthTable);
     }
 
     public List<Map<Character, Character>> simplifyTruthTable() {
@@ -131,23 +131,6 @@ public class SimplifiedTruthTableBuilder {
             }
         }
         return notSimplifiedTruthTableWithTrueResults;
-    }
-
-    /**
-     * Converts truth table from List<Map<Character, Integer>> to List<Map<Character, Character>>
-     */
-    private List<Map<Character, Character>> convertTruthTableType(List<Map<Character, Integer>> truthTable) {
-        List<Map<Character, Character>> convertedTruthTable = new ArrayList<>();
-
-        for (Map<Character, Integer> tableRow : truthTable) {
-
-            Map<Character, Character> convertedMap = new HashMap<>();
-            for (Map.Entry<Character, Integer> entry : tableRow.entrySet()) {
-                convertedMap.put(entry.getKey(), (char) (entry.getValue() + '0'));
-            }
-            convertedTruthTable.add(convertedMap);
-        }
-        return convertedTruthTable;
     }
 
 
