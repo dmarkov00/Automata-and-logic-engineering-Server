@@ -62,4 +62,31 @@ public class Utils {
         }
         return convertedTruthTable;
     }
+
+    /**
+     * Retrieves the rows that evaluate to true
+     */
+    public static List<List<Map<Character, Character>>> separateFalseFromTrueResultsFromTruthTable(List<Map<Character, Character>> truthTable) {
+
+
+        List<Map<Character, Character>> truthTableWithTrueResults = new ArrayList<>();
+        List<Map<Character, Character>> truthTableWithFalseResults = new ArrayList<>();
+
+
+        for (Map<Character, Character> tableRow : truthTable) {
+            if (tableRow.get('=') == '1') {
+
+                truthTableWithTrueResults.add(tableRow);
+            } else {
+                truthTableWithFalseResults.add(tableRow);
+            }
+        }
+        List<List<Map<Character, Character>>> separatedResults = new ArrayList<>();
+
+        separatedResults.add(truthTableWithTrueResults);
+        separatedResults.add(truthTableWithFalseResults);
+
+        return separatedResults;
+
+    }
 }

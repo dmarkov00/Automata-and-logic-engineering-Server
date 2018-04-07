@@ -1,16 +1,12 @@
 package ale.server.ale.calculations;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class SimplifiedTruthTableBuilder {
 
     private List<Map<Character, Character>> notSimplifiedTruthTable;
-
-    // Used to be merged with the final simplified table
-    private List<Map<Character, Character>> truthTableWithFalseResult = new ArrayList<>();
 
     // Used when a true row couldn't be simplified, so we indicate and store this row for later display
     private boolean rowWasSimplified = false;
@@ -27,8 +23,14 @@ public class SimplifiedTruthTableBuilder {
 
         List<Map<Character, Character>> simplifiedTruthTable = new ArrayList<>();
 
-        // Filter out the results that evaluated to false
-        List<Map<Character, Character>> notSimplifiedTruthTableWithTrueResults = getTrueResultsFromTruthTable();
+        // Separates rows that evaluate to true with rows that evaluate to false, returns as list with 2 elements
+        List<List<Map<Character, Character>>> separatedResults = Utils.separateFalseFromTrueResultsFromTruthTable(notSimplifiedTruthTable);
+
+        // Set the results that evaluate to true
+        List<Map<Character, Character>> notSimplifiedTruthTableWithTrueResults = separatedResults.get(0);
+
+        // Set the results that evaluate to false, used to be merged with the final simplified table
+        List<Map<Character, Character>> truthTableWithFalseResult = separatedResults.get(1);
 
         while (true) {
             for (int i = 0; i < notSimplifiedTruthTableWithTrueResults.size() - 1; i++) {
@@ -113,24 +115,6 @@ public class SimplifiedTruthTableBuilder {
             return simplifiedRow;
         }
         return null;
-    }
-
-
-    /**
-     * Retrieves the rows that evaluate to true
-     */
-    private List<Map<Character, Character>> getTrueResultsFromTruthTable() {
-        List<Map<Character, Character>> notSimplifiedTruthTableWithTrueResults = new ArrayList<>();
-
-        for (Map<Character, Character> tableRow : notSimplifiedTruthTable) {
-            if (tableRow.get('=') == '1') {
-
-                notSimplifiedTruthTableWithTrueResults.add(tableRow);
-            } else {
-                truthTableWithFalseResult.add(tableRow);
-            }
-        }
-        return notSimplifiedTruthTableWithTrueResults;
     }
 
 

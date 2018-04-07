@@ -5,11 +5,12 @@ import java.util.Map;
 
 public class DisjunctiveNormalForm {
 
-    List<Map<Character, Character>> truthTable;
-    List<Map<Character, Character>> simplifiedTruthTable;
+    private List<Map<Character, Character>> truthTable;
+    private List<Map<Character, Character>> simplifiedTruthTable;
 
-    public DisjunctiveNormalForm(List<Map<Character, Integer>> truthTable, List<Map<Character, Character>> simplifiedTruthTable) {
-
+    DisjunctiveNormalForm(List<Map<Character, Integer>> truthTable, List<Map<Character, Character>> simplifiedTruthTable) {
+        this.truthTable = Utils.convertTruthTableType(truthTable);
+        this.simplifiedTruthTable = simplifiedTruthTable;
 
     }
 
