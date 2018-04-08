@@ -1,4 +1,4 @@
-package ale.server.ale.calculations;    
+package ale.server.ale.calculations;
 
 import java.util.*;
 
@@ -164,6 +164,7 @@ class TruthTableBuilder {
             binaryString += truthTable.get(i).get('=');
         }
         long decimal = Long.parseLong(binaryString, 2);
+
         String hexString = Long.toString(decimal, 16);
         return hexString;
     }
