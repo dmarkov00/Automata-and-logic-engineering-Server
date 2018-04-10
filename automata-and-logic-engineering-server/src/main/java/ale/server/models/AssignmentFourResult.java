@@ -3,13 +3,24 @@ package ale.server.models;
 import java.util.List;
 
 public class AssignmentFourResult implements AssignmentResult {
-    private List<String> disjunctiveNormalForms;
+
+    private String disjunctiveNormalFormTruthTable;
+    private String disjunctiveNormalFormSimplifiedTruthTable;
+
 
     public AssignmentFourResult(List<String> disjunctiveNormalForms) {
-        this.disjunctiveNormalForms = disjunctiveNormalForms;
+        disjunctiveNormalFormTruthTable = disjunctiveNormalForms.get(0);
+        disjunctiveNormalFormSimplifiedTruthTable = disjunctiveNormalForms.get(1);
     }
-    // Required so Spring can re return the result
-    public List<String> getDisjunctiveNormalForms() {
-        return disjunctiveNormalForms;
+
+    // Required getters so Spring can send the result
+    public String getDisjunctiveNormalFormTruthTable() {
+        return disjunctiveNormalFormTruthTable;
     }
+
+    public String getDisjunctiveNormalFormSimplifiedTruthTable() {
+        return disjunctiveNormalFormSimplifiedTruthTable;
+    }
+
+
 }

@@ -16,8 +16,20 @@ public class DisjunctiveNormalForm {
     }
 
     public List<String> generateDisjunctiveNormalForms() {
+        StringBuilder disjunctiveNormalFormTruthTable;
+//        for (int i = 0; i < truthTable.size(); i++) {
+//
+//            List<String> rowVariable = retrieveRowVariables(truthTable.get(i));
+//
+//            if (rowVariable.size() == 1) {
+//                disjunctiveNormalFormTruthTable.append("&(").append(rowVariable.get(0)).append(")");
+//
+//            }
+//            else if ()
+//
+//        }
 
-
+        return null;
     }
 
     private List<String> retrieveRowVariables(Map<Character, Character> tableRow) {
