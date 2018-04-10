@@ -164,7 +164,6 @@ class TruthTableBuilder {
             binaryString += truthTable.get(i).get('=');
         }
         long decimal = Long.parseLong(binaryString, 2);
-
         String hexString = Long.toString(decimal, 16);
         return hexString;
     }

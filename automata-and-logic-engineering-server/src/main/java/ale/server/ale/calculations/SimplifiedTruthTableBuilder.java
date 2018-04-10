@@ -1,6 +1,7 @@
 package ale.server.ale.calculations;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -61,6 +62,7 @@ public class SimplifiedTruthTableBuilder {
                     }
                 }
                 rowWasSimplified = false;
+                a.clear();
             }
 
             // If nothing was simplified
@@ -78,14 +80,14 @@ public class SimplifiedTruthTableBuilder {
         // The final result consists of the combination between the false results and the simplified true results
         List<Map<Character, Character>> finalResult = new ArrayList<>();
         finalResult.addAll(truthTableWithFalseResult);
-        finalResult.addAll(notFullySimplifiedRows);
+//        finalResult.addAll(notFullySimplifiedRows);
         finalResult.addAll(simplifiedTruthTable);
 
         return finalResult;
     }
 
     private Map<Character, Character> simplifyRows(Map<Character, Character> rowOne, Map<Character, Character> rowTwo) {
-
+        rowOne = new HashMap<>(rowOne);
         int differentValuesCount = 0;
         char differentValueKey = ' ';
         for (char key : rowOne.keySet()) {
@@ -99,7 +101,6 @@ public class SimplifiedTruthTableBuilder {
 
             Map<Character, Character> simplifiedRow = rowOne;
             simplifiedRow.replace(differentValueKey, '*');
-
             return simplifiedRow;
         }
         return null;

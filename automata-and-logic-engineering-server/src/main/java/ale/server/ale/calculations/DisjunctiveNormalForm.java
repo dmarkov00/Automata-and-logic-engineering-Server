@@ -1,5 +1,6 @@
 package ale.server.ale.calculations;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,20 @@ public class DisjunctiveNormalForm {
     }
 
     public List<String> generateDisjunctiveNormalForms() {
-        return null;
+
+
+    }
+
+    private List<String> retrieveRowVariables(Map<Character, Character> tableRow) {
+        List<String> rowVariables = new ArrayList<>();
+
+        for (Map.Entry<Character, Character> variable : tableRow.entrySet()) {
+            if (variable.getValue() == '0') {
+                rowVariables.add("~(" + variable.getKey() + ")");
+            } else {
+                rowVariables.add(variable.getKey() + "");
+            }
+        }
+        return rowVariables;
     }
 }
