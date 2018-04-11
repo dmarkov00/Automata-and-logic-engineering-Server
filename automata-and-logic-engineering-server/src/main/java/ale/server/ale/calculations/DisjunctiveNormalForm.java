@@ -40,10 +40,27 @@ public class DisjunctiveNormalForm {
         StringBuilder normalizedRow = new StringBuilder();
 
         if (rowVariables.size() == 1) {
-            normalizedRow.append("&(").append(rowVariables.get(0)).append(")");
+            normalizedRow.append(operator).append("(").append(rowVariables.get(0)).append(")");
             return normalizedRow;
         }
+        if (rowVariables.size() == 0) {
+            return normalizedRow;
+        }
+        for (int i = 0; i < rowVariables.size(); i++) {
 
+            // If it is not that last variable
+            if (i < rowVariables.size() - 1) {
+                normalizedRow.append(operator).append("(").append(rowVariables.get(i)).append(",");
+
+                // If it is the last variable
+            } else {
+                normalizedRow.append(rowVariables.get(i));
+                // Add as many closing brackets are needed
+                for (int c = 0; c < rowVariables.size(); c++) {
+                    normalizedRow.append(")");
+                }
+            }
+        }
         return normalizedRow;
     }
 
