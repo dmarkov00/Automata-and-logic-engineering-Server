@@ -39,7 +39,7 @@ public class DisjunctiveNormalForm {
         StringBuilder normalizedRow = new StringBuilder();
 
         if (rowVariables.size() == 1) {
-            normalizedRow.append(operator).append("(").append(rowVariables.get(0)).append(")");
+            normalizedRow.append(rowVariables.get(0));
             return normalizedRow;
         }
         if (rowVariables.size() == 0) {
