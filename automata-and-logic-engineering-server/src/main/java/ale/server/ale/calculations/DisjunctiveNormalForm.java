@@ -28,9 +28,8 @@ public class DisjunctiveNormalForm {
 
             // Separates each row variable with '&' operator
             normalizedRow = normalizeRow(rowVariables, "&").toString();
-
+            listOfNormalizedRows.add(normalizedRow);
         }
-        listOfNormalizedRows.add(normalizedRow);
 
         // Separates each normalized table row with '|' operator
         return normalizeRow(listOfNormalizedRows, "|").toString();
@@ -56,7 +55,7 @@ public class DisjunctiveNormalForm {
             } else {
                 normalizedRow.append(rowVariables.get(i));
                 // Add as many closing brackets are needed
-                for (int c = 0; c < rowVariables.size(); c++) {
+                for (int c = 0; c < rowVariables.size() - 1; c++) {
                     normalizedRow.append(")");
                 }
             }
@@ -83,7 +82,7 @@ public class DisjunctiveNormalForm {
         for (Map.Entry<Character, Character> variable : tableRow.entrySet()) {
             if (variable.getValue() == '0') {
                 rowVariables.add("~(" + variable.getKey() + ")");
-            } else if (variable.getValue() == '1'){
+            } else if (variable.getValue() == '1' & variable.getKey() != '=') {
                 rowVariables.add(variable.getKey() + "");
             }
         }
