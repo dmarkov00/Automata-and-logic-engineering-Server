@@ -17,7 +17,7 @@ public class DisjunctiveNormalForm {
 
     }
 
-    public List<String> generateDisjunctiveNormalForm() {
+    public String generateDisjunctiveNormalForm(List<Map<Character, Character>> truthTable) {
         StringBuilder disjunctiveNormalFormTruthTable;
 //        for (int i = 0; i < truthTable.size(); i++) {
 //
@@ -35,7 +35,16 @@ public class DisjunctiveNormalForm {
     }
 
     public AssignmentFourResult generateDisjunctiveNormalForms() {
-        return null;
+
+        // Get the only the true rows from the truth table
+        List<Map<Character, Character>> truthTableWithTrueValues = Utils.separateFalseFromTrueResultsFromTruthTable(truthTable).get(0);
+        List<Map<Character, Character>> simplifiedTruthTableWithTrueValues = Utils.separateFalseFromTrueResultsFromTruthTable(simplifiedTruthTable).get(0);
+
+
+        String normalFormTruthTable = generateDisjunctiveNormalForm(truthTableWithTrueValues);
+        String normalFormSimplifiedTruthTable = generateDisjunctiveNormalForm(simplifiedTruthTableWithTrueValues);
+
+        return new AssignmentFourResult(normalFormTruthTable, normalFormSimplifiedTruthTable);
     }
 
     private List<String> retrieveRowVariables(Map<Character, Character> tableRow) {
