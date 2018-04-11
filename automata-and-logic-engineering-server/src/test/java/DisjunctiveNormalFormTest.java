@@ -1,7 +1,9 @@
 import ale.server.ale.calculations.AssignmentsCalculations;
 import ale.server.models.AssignmentFourResult;
+import ale.server.models.AssignmentThreeResult;
 import ale.server.models.AssignmentTwoResult;
 import ale.server.models.Formula;
+import com.sun.xml.internal.bind.v2.TODO;
 import org.junit.Test;
 
 import java.util.List;
@@ -104,6 +106,41 @@ public class DisjunctiveNormalFormTest {
 
 
         assertThat(tableResultInitialFormula, is(tableResultNormalFormula));
+    }
+
+    /**
+     * Here I retrieve the normal form for the simplified truth table
+     * Then I generate a new truth table based on it
+     * And I compare it with the simplified formurmal for from the truth table
+     */
+    //TODO: Check it again
+    @Test
+    public void disjunctiveNormalFormGenerationForSimplifiedTruthTable() {
+        // Initialization
+        Formula initialTestFormula = mock(Formula.class);
+        when(initialTestFormula.getFormula()).thenReturn("&(=(A,B),|(C,D))");
+
+        AssignmentsCalculations assignmentsCalculations = new AssignmentsCalculations(initialTestFormula);
+
+        // Retrieving the disjunctive normal form for the SIMPLIFIED table
+        AssignmentFourResult assignmentFourResult = assignmentsCalculations.generateAssignmentFourResult();
+        String disjunctiveNormalFormSimplifiedTruthTable = assignmentFourResult.getDisjunctiveNormalFormSimplifiedTruthTable();
+
+        // Retrieving of the SIMPLIFIED truth table for the initial formula
+        AssignmentThreeResult assignmentTwoResultInitialFormula = assignmentsCalculations.generateAssignmentThreeResult();
+        List<Map<Character, Character>> simplifiedTableResultInitialFormula = assignmentTwoResultInitialFormula.getSimplifiedTableResults();
+
+        // Generate new truthTable based on the disjunctive normal form
+        Formula normalFormFormula = mock(Formula.class);
+        when(normalFormFormula.getFormula()).thenReturn(disjunctiveNormalFormSimplifiedTruthTable);
+
+        assignmentsCalculations = new AssignmentsCalculations(normalFormFormula);
+
+        AssignmentThreeResult assignmentThreeResultNormalFormula = assignmentsCalculations.generateAssignmentThreeResult();
+        List<Map<Character, Character>> SimplifiedTableResultNormalFormula = assignmentThreeResultNormalFormula.getSimplifiedTableResults();
+
+
+        assertThat(simplifiedTableResultInitialFormula, is(SimplifiedTableResultNormalFormula));
     }
 
 }
