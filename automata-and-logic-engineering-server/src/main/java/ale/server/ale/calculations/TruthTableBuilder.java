@@ -1,5 +1,6 @@
 package ale.server.ale.calculations;
 
+import java.math.BigInteger;
 import java.util.*;
 
 class TruthTableBuilder {
@@ -9,9 +10,7 @@ class TruthTableBuilder {
 
     private FormulaTree formulaTree;
 
-    /**
-     * @return
-     */
+
     public List<Map<Character, Integer>> generateTruthTable() {
 
         List<Map<Character, Integer>> truthTable;
@@ -163,8 +162,8 @@ class TruthTableBuilder {
         for (int i = truthTable.size() - 1; i >= 0; i--) {
             binaryString += truthTable.get(i).get('=');
         }
-        long decimal = Long.parseLong(binaryString, 2);
-        String hexString = Long.toString(decimal, 16);
-        return hexString;
+        BigInteger toNr = new BigInteger(binaryString, 2);
+
+        return toNr.toString(16);
     }
 }
