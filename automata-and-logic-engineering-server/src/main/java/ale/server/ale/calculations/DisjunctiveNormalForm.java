@@ -17,21 +17,34 @@ public class DisjunctiveNormalForm {
 
     }
 
-    public String generateDisjunctiveNormalForm(List<Map<Character, Character>> truthTable) {
-        StringBuilder disjunctiveNormalFormTruthTable;
-//        for (int i = 0; i < truthTable.size(); i++) {
-//
-//            List<String> rowVariable = retrieveRowVariables(truthTable.get(i));
-//
-//            if (rowVariable.size() == 1) {
-//                disjunctiveNormalFormTruthTable.append("&(").append(rowVariable.get(0)).append(")");
-//
-//            }
-//            else if ()
-//
-//        }
+    private String generateDisjunctiveNormalForm(List<Map<Character, Character>> truthTable) {
+        List<String> rowVariables;
+        List<String> listOfNormalizedRows = new ArrayList<>();
+        String normalizedRow = "";
+        for (Map<Character, Character> tableRow : truthTable) {
 
-        return null;
+            // Convert variables from the map based on their values to List of stings
+            rowVariables = retrieveRowVariables(tableRow);
+
+            // Separates each row variable with '&' operator
+            normalizedRow = normalizeRow(rowVariables, "&").toString();
+
+        }
+        listOfNormalizedRows.add(normalizedRow);
+
+        // Separates each normalized table row with '|' operator
+        return normalizeRow(listOfNormalizedRows, "|").toString();
+    }
+
+    private StringBuilder normalizeRow(List<String> rowVariables, String operator) {
+        StringBuilder normalizedRow = new StringBuilder();
+
+        if (rowVariables.size() == 1) {
+            normalizedRow.append("&(").append(rowVariables.get(0)).append(")");
+            return normalizedRow;
+        }
+
+        return normalizedRow;
     }
 
     public AssignmentFourResult generateDisjunctiveNormalForms() {
