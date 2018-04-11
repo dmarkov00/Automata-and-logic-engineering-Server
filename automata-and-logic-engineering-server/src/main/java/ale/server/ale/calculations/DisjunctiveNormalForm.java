@@ -83,7 +83,7 @@ public class DisjunctiveNormalForm {
         for (Map.Entry<Character, Character> variable : tableRow.entrySet()) {
             if (variable.getValue() == '0') {
                 rowVariables.add("~(" + variable.getKey() + ")");
-            } else {
+            } else if (variable.getValue() == '1'){
                 rowVariables.add(variable.getKey() + "");
             }
         }
