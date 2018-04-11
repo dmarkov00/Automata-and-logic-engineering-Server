@@ -68,9 +68,8 @@ public class AssignmentsCalculations {
 
         DisjunctiveNormalForm disjunctiveNormalForm = new DisjunctiveNormalForm(truthTable, simplifiedTruthTable);
 
-        List<String> disjunctiveNormalForms = disjunctiveNormalForm.generateDisjunctiveNormalForms();
 
-        return new AssignmentFourResult(disjunctiveNormalForms);
+        return disjunctiveNormalForm.generateDisjunctiveNormalForms();
 
     }
 }

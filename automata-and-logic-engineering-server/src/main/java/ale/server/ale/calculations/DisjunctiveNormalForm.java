@@ -1,5 +1,7 @@
 package ale.server.ale.calculations;
 
+import ale.server.models.AssignmentFourResult;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +17,7 @@ public class DisjunctiveNormalForm {
 
     }
 
-    public List<String> generateDisjunctiveNormalForms() {
+    public List<String> generateDisjunctiveNormalForm() {
         StringBuilder disjunctiveNormalFormTruthTable;
 //        for (int i = 0; i < truthTable.size(); i++) {
 //
@@ -29,6 +31,10 @@ public class DisjunctiveNormalForm {
 //
 //        }
 
+        return null;
+    }
+
+    public AssignmentFourResult generateDisjunctiveNormalForms() {
         return null;
     }
 
