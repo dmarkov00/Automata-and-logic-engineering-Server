@@ -72,4 +72,15 @@ public class AssignmentsCalculations {
         return disjunctiveNormalForm.generateDisjunctiveNormalForms();
 
     }
+
+    public AssignmentFiveResult generateAssignmentFiveResult() {
+        if (formulaTree == null) {
+            return null;
+        }
+        NandifyFormula nandifyFormula = new NandifyFormula(formulaTree);
+
+        String nandifiedFormula = nandifyFormula.generateNandifiedFormula();
+
+        return new AssignmentFiveResult(nandifiedFormula);
+    }
 }

@@ -25,11 +25,15 @@ public class AssignmentsManager {
 
             case 5:
 
-                break;
+                return this.getAssignmentFiveResult();
             default:
 
         }
         return null;
+    }
+
+    private AssignmentFiveResult getAssignmentFiveResult() {
+        return assignmentsCalculations.generateAssignmentFiveResult();
     }
 
     private AssignmentFourResult getAssignmentFourResult() {
