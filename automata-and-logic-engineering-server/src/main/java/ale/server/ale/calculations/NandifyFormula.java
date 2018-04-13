@@ -34,7 +34,7 @@ class NandifyFormula {
             rightNandifiedValue = nandifyTree(formulaTree.getRightChildIndex(rootIndex), arrayTree);
         }
 
-        if (Utils.isOperator(arrayTree[rootIndex])) {
+        if (Utils.isOperator(arrayTree[rootIndex]) & arrayTree[rootIndex].getValue() != '%') {
             String nandifiedValue = getNandifiedResult(arrayTree[rootIndex], leftNandifiedValue, rightNandifiedValue);
             arrayTree[rootIndex].setNandifiedValue(nandifiedValue);
 
