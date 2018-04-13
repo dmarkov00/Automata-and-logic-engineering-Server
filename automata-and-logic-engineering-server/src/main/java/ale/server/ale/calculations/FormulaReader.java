@@ -78,7 +78,6 @@ public class FormulaReader {
      * Checks if the formula meets the requirements by using a regular expression
      */
     private boolean isFormulaCorrectlyFormatted(String formulaStr) {
-        // Remove spaces
 
         return formulaStr.matches("[a-zA-Z()~|=&,>%]+");
     }

@@ -1,5 +1,7 @@
 package ale.server.ale.calculations;
 
+import ale.server.ale.calculations.utils.Utils;
+
 class NandifyFormula {
     private FormulaTree formulaTree;
 

@@ -1,5 +1,6 @@
-package ale.server.ale.calculations;
+package ale.server.ale.calculations.utils;
 
+import ale.server.ale.calculations.AssignmentsCalculations;
 import ale.server.models.*;
 
 public class AssignmentsManager {

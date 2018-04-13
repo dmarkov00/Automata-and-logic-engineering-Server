@@ -1,4 +1,4 @@
-import ale.server.ale.calculations.Utils;
+import ale.server.ale.calculations.utils.Utils;
 import org.junit.Test;
 
 import java.util.ArrayList;

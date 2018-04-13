@@ -1,6 +1,6 @@
 package ale.server.controllers;
 
-import ale.server.ale.calculations.AssignmentsManager;
+import ale.server.ale.calculations.utils.AssignmentsManager;
 import ale.server.models.AssignmentResult;
 import ale.server.models.Formula;
 import org.springframework.http.HttpStatus;
