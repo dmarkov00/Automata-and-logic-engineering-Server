@@ -18,7 +18,7 @@ class NandifyFormula {
     private String nandifyTree(int rootIndex, Node[] arrayTree) {
         if (!formulaTree.nodeHasLeftChild(rootIndex) & !formulaTree.nodeHasRightChild(rootIndex)) {
 
-            return arrayTree[rootIndex].getNandifiedValue();
+            return arrayTree[rootIndex].getValue() + "";
         }
         String leftNandifiedValue;
         String rightNandifiedValue;

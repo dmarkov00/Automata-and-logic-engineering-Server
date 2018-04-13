@@ -4,7 +4,6 @@ public class Node {
     private char value;
     private int binaryValue;
     private String nandifiedValue;
-
     Node(char value) {
 
         this.value = value;
