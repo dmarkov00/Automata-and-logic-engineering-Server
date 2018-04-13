@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Utils {
 
-    public static boolean isNotVariable(Node node) {
+    public static boolean isOperator(Node node) {
         List<Character> bannedChars = Arrays.asList('=', ')', '(', '>', '&', ',', '|', '~');
         return bannedChars.contains(node.getValue());
     }

@@ -42,7 +42,9 @@ class TruthTableBuilder {
         return tableData;
     }
 
-
+    /**
+     * Binary tree evaluation
+     */
     private int evaluateTree(int rootIndex, Node[] arrayTree) {
 
         if (!formulaTree.nodeHasLeftChild(rootIndex) & !formulaTree.nodeHasRightChild(rootIndex)) {
@@ -63,7 +65,7 @@ class TruthTableBuilder {
             rightBinaryValue = evaluateTree(formulaTree.getRightChildIndex(rootIndex), arrayTree);
         }
 
-        if (Utils.isNotVariable(arrayTree[rootIndex])) {
+        if (Utils.isOperator(arrayTree[rootIndex])) {
             int evaluatedValue = getBinaryResult(arrayTree[rootIndex], leftBinaryValue, rightBinaryValue);
             arrayTree[rootIndex].setBinaryValue(evaluatedValue);
 

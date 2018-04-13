@@ -10,5 +10,7 @@ public class AssignmentFiveResult implements AssignmentResult {
 
     public String getNandifiedFormula() {
         return nandifiedFormula;
+
+
     }
 }
