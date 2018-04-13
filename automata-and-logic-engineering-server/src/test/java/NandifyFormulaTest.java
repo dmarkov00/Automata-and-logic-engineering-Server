@@ -172,4 +172,66 @@ public class NandifyFormulaTest {
         assertThat(initialFormulaTruthTableValues, is(nandifiedFormulaTruthTableValues));
 
     }
+    @Test
+    public void nandifiedFormulaGenerationFormula1() {
+        // Initialization
+        Formula initialFormula = mock(Formula.class);
+        when(initialFormula.getFormula()).thenReturn("&(&(p,q),~(p))");
+
+        AssignmentsCalculations assignmentsCalculations = new AssignmentsCalculations(initialFormula);
+
+        // Calculate the nandified version of the initial formula
+        AssignmentFiveResult assignmentFiveResult = assignmentsCalculations.generateAssignmentFiveResult();
+        String nandifiedFormula = assignmentFiveResult.getNandifiedFormula();
+
+        // Calculate the truth table of the initial formula
+        AssignmentTwoResult assignmentTwoResultInitialFormula = assignmentsCalculations.generateAssignmentTwoResult();
+        List<Map<Character, Integer>> initialFormulaTruthTableValues = assignmentTwoResultInitialFormula.getTableResults();
+
+        // New initialization with the nandified formula
+        Formula nandifiedTestFormula = mock(Formula.class);
+        when(nandifiedTestFormula.getFormula()).thenReturn(nandifiedFormula);
+
+        assignmentsCalculations = new AssignmentsCalculations(nandifiedTestFormula);
+
+        // Calculate the truth table of the nandified formula
+        AssignmentTwoResult assignmentTwoResultNandifiedFormula = assignmentsCalculations.generateAssignmentTwoResult();
+        List<Map<Character, Integer>> nandifiedFormulaTruthTableValues = assignmentTwoResultNandifiedFormula.getTableResults();
+
+
+        assertThat(initialFormulaTruthTableValues, is(nandifiedFormulaTruthTableValues));
+
+    }
+    @Test
+    public void nandifiedFormulaGenerationFormula2() {
+        // Initialization
+        Formula initialFormula = mock(Formula.class);
+        when(initialFormula.getFormula()).thenReturn("~(&(>(A,C),~(&(~(B),C))))");
+
+        AssignmentsCalculations assignmentsCalculations = new AssignmentsCalculations(initialFormula);
+
+        // Calculate the nandified version of the initial formula
+        AssignmentFiveResult assignmentFiveResult = assignmentsCalculations.generateAssignmentFiveResult();
+        String nandifiedFormula = assignmentFiveResult.getNandifiedFormula();
+
+        // Calculate the truth table of the initial formula
+        AssignmentTwoResult assignmentTwoResultInitialFormula = assignmentsCalculations.generateAssignmentTwoResult();
+        List<Map<Character, Integer>> initialFormulaTruthTableValues = assignmentTwoResultInitialFormula.getTableResults();
+
+        // New initialization with the nandified formula
+        Formula nandifiedTestFormula = mock(Formula.class);
+        when(nandifiedTestFormula.getFormula()).thenReturn(nandifiedFormula);
+
+        assignmentsCalculations = new AssignmentsCalculations(nandifiedTestFormula);
+
+        // Calculate the truth table of the nandified formula
+        AssignmentTwoResult assignmentTwoResultNandifiedFormula = assignmentsCalculations.generateAssignmentTwoResult();
+        List<Map<Character, Integer>> nandifiedFormulaTruthTableValues = assignmentTwoResultNandifiedFormula.getTableResults();
+
+
+        assertThat(initialFormulaTruthTableValues, is(nandifiedFormulaTruthTableValues));
+
+    }
+
+
 }
