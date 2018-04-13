@@ -103,8 +103,9 @@ class TruthTableBuilder {
                 } else {
                     return 0;
                 }
-
             default:
+                // Here comes the '>' operator
+
                 if (left == 1 && right == 0) {
                     return 0;
                 } else return 1;

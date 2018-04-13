@@ -44,24 +44,47 @@ class NandifyFormula {
 
     }
 
-    public String getNandifiedResult(Node root, String left, String right) {
+    private String getNandifiedResult(Node root, String left, String right) {
+        StringBuilder nandifiedResult = new StringBuilder();
         char rootValue = root.getValue();
 
         switch (rootValue) {
             case '|':
+                // |(A,B) -> %(%(A,A),%(B,B))
 
-
+                nandifiedResult.append("%(%(").append(left).append(",").append(left).append("),%(").append(right).append(",").append(right).append("))");
+                return nandifiedResult.toString();
             case '&':
+                // &(A,B) -> %(%(A,B),%(A,B))
+
+                nandifiedResult.append("%(%(").append(left).append(",").append(right).append("),%(").append(left).append(",").append(right).append("))");
+                return nandifiedResult.toString();
 
             case '~':
+                // ~(A) -> %(A,A)
 
+                if (right == null) {
+
+                    nandifiedResult.append("%(").append(left).append(",").append(left).append(")");
+
+                } else if (left == null) {
+                    nandifiedResult.append("%(").append(right).append(",").append(right).append(")");
+                }
+
+                return nandifiedResult.toString();
 
             case '=':
+                // =(A,B) -> %(%(%(A,A),%(B,B)),%(A,B))
 
-
+                nandifiedResult.append("%(%(%(").append(left).append(",").append(left).append("),%(").append(right)
+                        .append(",").append(right).append(")),%(").append(left).append(",").append(right).append("))");
+                return nandifiedResult.toString();
             default:
+                // Here comes the '>' operator
+                // >(A,B) -> %(A,%(B,B))
 
-                // here is >
+                nandifiedResult.append("%(").append(left).append(",").append("%(").append(right).append(",").append(right).append("))");
+                return nandifiedResult.toString();
 
         }
     }
