@@ -16,7 +16,7 @@ public class SimplifiedTruthTableBuilder {
 
     private List<Map<Character, Character>> notFullySimplifiedRows = new ArrayList<>();
 
-    SimplifiedTruthTableBuilder(List<Map<Character, Integer>> truthTable) {
+    public SimplifiedTruthTableBuilder(List<Map<Character, Integer>> truthTable) {
 
         notSimplifiedTruthTable = Utils.convertTruthTableType(truthTable);
     }

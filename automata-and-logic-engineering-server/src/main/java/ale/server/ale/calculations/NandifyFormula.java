@@ -1,11 +1,13 @@
 package ale.server.ale.calculations;
 
+import ale.server.ale.calculations.structures.FormulaTree;
+import ale.server.ale.calculations.structures.Node;
 import ale.server.ale.calculations.utils.Utils;
 
-class NandifyFormula {
+public class NandifyFormula {
     private FormulaTree formulaTree;
 
-    NandifyFormula(FormulaTree formulaTree) {
+    public NandifyFormula(FormulaTree formulaTree) {
         this.formulaTree = formulaTree;
     }
 
@@ -50,7 +52,7 @@ class NandifyFormula {
     }
 
     /**
-     *  Nandifies expression base on the operator and the passed left or right variables
+     * Nandifies expression base on the operator and the passed left or right variables
      */
     private String getNandifiedResult(Node root, String left, String right) {
         StringBuilder nandifiedResult = new StringBuilder();

@@ -1,5 +1,8 @@
 package ale.server.ale.calculations;
 
+import ale.server.ale.calculations.structures.FormulaTree;
+import ale.server.ale.calculations.structures.Node;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;

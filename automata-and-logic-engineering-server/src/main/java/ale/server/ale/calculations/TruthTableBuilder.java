@@ -1,13 +1,15 @@
 package ale.server.ale.calculations;
 
+import ale.server.ale.calculations.structures.FormulaTree;
+import ale.server.ale.calculations.structures.Node;
 import ale.server.ale.calculations.utils.FormulaReader;
 import ale.server.ale.calculations.utils.Utils;
 
 import java.math.BigInteger;
 import java.util.*;
 
-class TruthTableBuilder {
-    TruthTableBuilder(FormulaTree formulaTree) {
+public class TruthTableBuilder {
+    public TruthTableBuilder(FormulaTree formulaTree) {
         this.formulaTree = formulaTree;
     }
 

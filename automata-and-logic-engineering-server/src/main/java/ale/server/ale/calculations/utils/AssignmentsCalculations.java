@@ -1,10 +1,15 @@
-package ale.server.ale.calculations;
+package ale.server.ale.calculations.utils;
 
+import ale.server.ale.calculations.*;
+import ale.server.ale.calculations.structures.FormulaTree;
 import ale.server.ale.calculations.utils.FormulaReader;
 import ale.server.models.*;
 
 import java.util.*;
 
+/**
+ * Manages assignments and the dependencies and relations between them
+ */
 public class AssignmentsCalculations {
 
     private FormulaTree formulaTree;

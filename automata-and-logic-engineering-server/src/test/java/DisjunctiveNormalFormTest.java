@@ -1,9 +1,8 @@
-import ale.server.ale.calculations.AssignmentsCalculations;
+import ale.server.ale.calculations.utils.AssignmentsCalculations;
 import ale.server.models.AssignmentFourResult;
 import ale.server.models.AssignmentThreeResult;
 import ale.server.models.AssignmentTwoResult;
 import ale.server.models.Formula;
-import com.sun.xml.internal.bind.v2.TODO;
 import org.junit.Test;
 
 import java.util.List;

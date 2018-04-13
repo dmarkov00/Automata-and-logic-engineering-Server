@@ -1,4 +1,4 @@
-package ale.server.ale.calculations;
+package ale.server.ale.calculations.structures;
 
 public class Node {
     private char value;

@@ -1,11 +1,9 @@
 package ale.server.ale.calculations.utils;
 
-import ale.server.ale.calculations.FormulaTree;
+import ale.server.ale.calculations.structures.FormulaTree;
 import ale.server.models.Formula;
 
 import java.io.UnsupportedEncodingException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class FormulaReader {
     private FormulaTree formulaTree;

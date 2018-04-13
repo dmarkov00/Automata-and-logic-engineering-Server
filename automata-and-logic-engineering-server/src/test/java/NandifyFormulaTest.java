@@ -1,8 +1,7 @@
-import ale.server.ale.calculations.AssignmentsCalculations;
+import ale.server.ale.calculations.utils.AssignmentsCalculations;
 import ale.server.models.AssignmentFiveResult;
 import ale.server.models.AssignmentTwoResult;
 import ale.server.models.Formula;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;

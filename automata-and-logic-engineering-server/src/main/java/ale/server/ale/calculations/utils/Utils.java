@@ -1,7 +1,7 @@
 package ale.server.ale.calculations.utils;
 
-import ale.server.ale.calculations.FormulaTree;
-import ale.server.ale.calculations.Node;
+import ale.server.ale.calculations.structures.FormulaTree;
+import ale.server.ale.calculations.structures.Node;
 
 import java.util.*;
 

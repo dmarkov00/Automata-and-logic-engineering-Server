@@ -1,6 +1,4 @@
-import ale.server.ale.calculations.AssignmentsCalculations;
-import ale.server.ale.calculations.GraphGenerator;
-import ale.server.models.AssignmentOneResult;
+import ale.server.ale.calculations.utils.AssignmentsCalculations;
 import ale.server.models.Formula;
 import org.junit.Test;
 
