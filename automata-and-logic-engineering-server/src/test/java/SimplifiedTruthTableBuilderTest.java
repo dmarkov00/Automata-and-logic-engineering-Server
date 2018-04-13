@@ -128,4 +128,69 @@ public class SimplifiedTruthTableBuilderTest {
 
         assertThat(rowValues, is(rowStub));
     }
+
+    @Test
+    public void truthTableSimplificationFormula3() {
+
+        // Initialization
+        Formula testFormula = mock(Formula.class);
+        when(testFormula.getFormula()).thenReturn("&(=(A,B),|(C,D))");
+
+        AssignmentsCalculations assignmentsCalculations = new AssignmentsCalculations(testFormula);
+        AssignmentThreeResult assignmentThreeResult = assignmentsCalculations.generateAssignmentThreeResult();
+
+        List<Map<Character, Character>> simplifiedTruthTableResults = assignmentThreeResult.getSimplifiedTableResults();
+
+        // Test for the tenth row of the table
+        List<Character> rowStub = new ArrayList<>(Arrays.asList('0', '0', '*', '1', '1'));
+
+        char tenthRowAValue = simplifiedTruthTableResults.get(10).get('A');
+        char tenthRowBValue = simplifiedTruthTableResults.get(10).get('B');
+        char tenthRowCValue = simplifiedTruthTableResults.get(10).get('C');
+        char tenthRowDValue = simplifiedTruthTableResults.get(10).get('D');
+        char tenthRowResult = simplifiedTruthTableResults.get(10).get('=');
+
+        List<Character> rowValues = new ArrayList<>(Arrays.asList(tenthRowAValue, tenthRowBValue, tenthRowCValue, tenthRowDValue, tenthRowResult));
+
+        assertThat(rowValues, is(rowStub));
+
+        // Test for the eleventh row of the table
+        rowStub = new ArrayList<>(Arrays.asList('0', '0', '1', '*', '1'));
+
+        char eleventhRowAValue = simplifiedTruthTableResults.get(11).get('A');
+        char eleventhRowBValue = simplifiedTruthTableResults.get(11).get('B');
+        char eleventhRowCValue = simplifiedTruthTableResults.get(11).get('C');
+        char eleventhRowDValue = simplifiedTruthTableResults.get(11).get('D');
+        char eleventhRowResult = simplifiedTruthTableResults.get(11).get('=');
+
+        rowValues = new ArrayList<>(Arrays.asList(eleventhRowAValue, eleventhRowBValue, eleventhRowCValue, eleventhRowDValue, eleventhRowResult));
+
+        assertThat(rowValues, is(rowStub));
+        // Test for the twelfth row of the table
+        rowStub = new ArrayList<>(Arrays.asList('1', '1', '*', '1', '1'));
+
+        char twelfthRowAValue = simplifiedTruthTableResults.get(12).get('A');
+        char twelfthRowBValue = simplifiedTruthTableResults.get(12).get('B');
+        char twelfthRowCValue = simplifiedTruthTableResults.get(12).get('C');
+        char twelfthRowDValue = simplifiedTruthTableResults.get(12).get('D');
+        char twelfthRowResult = simplifiedTruthTableResults.get(12).get('=');
+
+        rowValues = new ArrayList<>(Arrays.asList(twelfthRowAValue, twelfthRowBValue, twelfthRowCValue, twelfthRowDValue, twelfthRowResult));
+
+        assertThat(rowValues, is(rowStub));
+
+        // Test for the thirteenth row of the table
+        rowStub = new ArrayList<>(Arrays.asList('1', '1', '1', '*', '1'));
+
+        char thirteenthRowAValue = simplifiedTruthTableResults.get(13).get('A');
+        char thirteenthRowBValue = simplifiedTruthTableResults.get(13).get('B');
+        char thirteenthRowCValue = simplifiedTruthTableResults.get(13).get('C');
+        char thirteenthRowDValue = simplifiedTruthTableResults.get(13).get('D');
+        char thirteenthRowResult = simplifiedTruthTableResults.get(13).get('=');
+
+        rowValues = new ArrayList<>(Arrays.asList(thirteenthRowAValue, thirteenthRowBValue, thirteenthRowCValue, thirteenthRowDValue, thirteenthRowResult));
+
+        assertThat(rowValues, is(rowStub));
+
+    }
 }
