@@ -14,7 +14,10 @@ class NandifyFormula {
 
     }
 
-
+    /**
+     * The algorithm is based on binary tree evaluation
+     * Generates nandified formula
+     */
     private String nandifyTree(int rootIndex, Node[] arrayTree) {
         if (!formulaTree.nodeHasLeftChild(rootIndex) & !formulaTree.nodeHasRightChild(rootIndex)) {
 
@@ -44,6 +47,9 @@ class NandifyFormula {
 
     }
 
+    /**
+     *  Nandifies expression base on the operator and the passed left or right variables
+     */
     private String getNandifiedResult(Node root, String left, String right) {
         StringBuilder nandifiedResult = new StringBuilder();
         char rootValue = root.getValue();
