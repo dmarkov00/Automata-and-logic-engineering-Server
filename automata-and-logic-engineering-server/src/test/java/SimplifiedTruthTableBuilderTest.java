@@ -13,6 +13,10 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+
+/**
+ * The hard coded values I use for assertion are not checked on paper, they rely on a comparisons with colleagues
+ */
 public class SimplifiedTruthTableBuilderTest {
 
     @Test
