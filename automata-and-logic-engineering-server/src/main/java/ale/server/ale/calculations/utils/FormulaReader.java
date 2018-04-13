@@ -1,5 +1,6 @@
-package ale.server.ale.calculations;
+package ale.server.ale.calculations.utils;
 
+import ale.server.ale.calculations.FormulaTree;
 import ale.server.models.Formula;
 
 import java.io.UnsupportedEncodingException;
@@ -10,7 +11,7 @@ public class FormulaReader {
     private FormulaTree formulaTree;
     public static String parsedFormulaString;
 
-    FormulaReader() {
+    public FormulaReader() {
         this.formulaTree = new FormulaTree();
     }
 
