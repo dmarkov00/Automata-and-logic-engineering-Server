@@ -103,6 +103,12 @@ class TruthTableBuilder {
                 } else {
                     return 0;
                 }
+            case '%':
+                if ((left & right) == 1) {
+                    return 0;
+                } else {
+                    return 1;
+                }
             default:
                 // Here comes the '>' operator
 

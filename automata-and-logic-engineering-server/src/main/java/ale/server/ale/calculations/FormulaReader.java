@@ -42,8 +42,24 @@ public class FormulaReader {
     private StringBuilder convertFormula(Formula formula) {
 
         String parsedFormula = "";
+        String notParsedFormula = formula.getFormula();
         try {
-            parsedFormula = java.net.URLDecoder.decode(formula.getFormula(), "UTF-8");
+            StringBuilder tempBuffer = new StringBuilder();
+            int incrementer = 0;
+            int dataLength = notParsedFormula.length();
+            while (incrementer < dataLength) {
+                char characterAt = notParsedFormula.charAt(incrementer);
+                if (characterAt == '%') {
+                    tempBuffer.append("<percentage>");
+                } else {
+                    tempBuffer.append(characterAt);
+                }
+                incrementer++;
+            }
+            notParsedFormula = tempBuffer.toString();
+
+            parsedFormula = java.net.URLDecoder.decode(notParsedFormula, "UTF-8").replaceAll("<percentage>", "%");
+
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -64,6 +80,6 @@ public class FormulaReader {
     private boolean isFormulaCorrectlyFormatted(String formulaStr) {
         // Remove spaces
 
-        return formulaStr.matches("[a-zA-Z()~|=&,>]+");
+        return formulaStr.matches("[a-zA-Z()~|=&,>%]+");
     }
 }

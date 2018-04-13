@@ -5,7 +5,7 @@ import java.util.*;
 public class Utils {
 
     public static boolean isOperator(Node node) {
-        List<Character> bannedChars = Arrays.asList('=', ')', '(', '>', '&', ',', '|', '~');
+        List<Character> bannedChars = Arrays.asList('=', ')', '(', '>', '&', ',', '|', '~', '%');
         return bannedChars.contains(node.getValue());
     }
 
@@ -22,7 +22,7 @@ public class Utils {
         List<Character> variablesList = new ArrayList<>();
 
         // Do not consider these characters for variables
-        List<Character> bannedChars = new ArrayList<>(Arrays.asList('=', ')', '(', '>', '&', ',', '|', '~'));
+        List<Character> bannedChars = new ArrayList<>(Arrays.asList('=', ')', '(', '>', '&', ',', '|', '~', '%'));
 
         for (Node node : arrayTree) {
             if (node != null) {
