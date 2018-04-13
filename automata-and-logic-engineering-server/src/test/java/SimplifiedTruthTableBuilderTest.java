@@ -15,12 +15,12 @@ import static org.mockito.Mockito.when;
 
 
 /**
- * The hard coded values I use for assertion are not checked on paper, they rely on a comparisons with colleagues
+ * The stub values I use for assertion are not checked on paper, their authenticity relies on a comparisons with colleagues
  */
 public class SimplifiedTruthTableBuilderTest {
 
     @Test
-    public void truthTableSimplification() {
+    public void truthTableSimplificationFormula1() {
 
         // Initialization
         Formula testFormula = mock(Formula.class);
@@ -75,6 +75,56 @@ public class SimplifiedTruthTableBuilderTest {
         char forthRowResult = simplifiedTruthTableResults.get(3).get('=');
 
         rowValues = new ArrayList<>(Arrays.asList(forthRowAValue, forthRowBValue, forthRowCValue, forthRowResult));
+
+        assertThat(rowValues, is(rowStub));
+    }
+
+
+    @Test
+    public void truthTableSimplificationFormula2() {
+
+        // Initialization
+        Formula testFormula = mock(Formula.class);
+        when(testFormula.getFormula()).thenReturn("&(|(A, B),C)");
+
+        AssignmentsCalculations assignmentsCalculations = new AssignmentsCalculations(testFormula);
+        AssignmentThreeResult assignmentThreeResult = assignmentsCalculations.generateAssignmentThreeResult();
+
+        List<Map<Character, Character>> simplifiedTruthTableResults = assignmentThreeResult.getSimplifiedTableResults();
+
+        // Test for the first row of the table
+        List<Character> rowStub = new ArrayList<>(Arrays.asList('0', '0', '0', '0'));
+
+        char firstRowAValue = simplifiedTruthTableResults.get(0).get('A');
+        char firstRowBValue = simplifiedTruthTableResults.get(0).get('B');
+        char firstRowCValue = simplifiedTruthTableResults.get(0).get('C');
+        char firstRowResult = simplifiedTruthTableResults.get(0).get('=');
+
+        List<Character> rowValues = new ArrayList<>(Arrays.asList(firstRowAValue, firstRowBValue, firstRowCValue, firstRowResult));
+
+        assertThat(rowValues, is(rowStub));
+
+
+        // Test for the fifth row of the table
+        rowStub = new ArrayList<>(Arrays.asList('*', '1', '1', '1'));
+
+        char fifthRowAValue = simplifiedTruthTableResults.get(5).get('A');
+        char fifthRowBValue = simplifiedTruthTableResults.get(5).get('B');
+        char fifthRowCValue = simplifiedTruthTableResults.get(5).get('C');
+        char fifthRowResult = simplifiedTruthTableResults.get(5).get('=');
+
+        rowValues = new ArrayList<>(Arrays.asList(fifthRowAValue, fifthRowBValue, fifthRowCValue, fifthRowResult));
+
+        assertThat(rowValues, is(rowStub));
+        // Test for the sixth row of the table
+        rowStub = new ArrayList<>(Arrays.asList('1', '*', '1', '1'));
+
+        char sixthRowAValue = simplifiedTruthTableResults.get(6).get('A');
+        char sixthRowBValue = simplifiedTruthTableResults.get(6).get('B');
+        char sixthRowCValue = simplifiedTruthTableResults.get(6).get('C');
+        char sixthRowResult = simplifiedTruthTableResults.get(6).get('=');
+
+        rowValues = new ArrayList<>(Arrays.asList(sixthRowAValue, sixthRowBValue, sixthRowCValue, sixthRowResult));
 
         assertThat(rowValues, is(rowStub));
     }

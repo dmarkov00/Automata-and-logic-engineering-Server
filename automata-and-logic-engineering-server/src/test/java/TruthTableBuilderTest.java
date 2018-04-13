@@ -13,6 +13,9 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+/**
+ * The stub values I use for assertion are not checked on paper, their authenticity relies on a comparisons with colleagues
+ */
 public class TruthTableBuilderTest {
     private AssignmentTwoResult assignmentTwoResult;
 
