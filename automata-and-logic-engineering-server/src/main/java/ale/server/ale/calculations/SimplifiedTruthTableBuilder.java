@@ -88,6 +88,9 @@ public class SimplifiedTruthTableBuilder {
         return finalResult;
     }
 
+    /**
+     * Checks if the passed rows have 1 value that is different, if true it returns a simplified row
+     */
     private Map<Character, Character> simplifyRows(Map<Character, Character> rowOne, Map<Character, Character> rowTwo) {
         rowOne = new HashMap<>(rowOne);
         int differentValuesCount = 0;
