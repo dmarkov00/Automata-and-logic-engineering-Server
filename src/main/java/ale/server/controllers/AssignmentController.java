@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class AssignmentController {
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://automata-and-logic-engineering.herokuapp.com")
     @PostMapping(path = "/calculate/{nr}")
     public ResponseEntity calculateResult(@PathVariable("nr") int assignmentNr, @RequestBody Formula formula)
 
