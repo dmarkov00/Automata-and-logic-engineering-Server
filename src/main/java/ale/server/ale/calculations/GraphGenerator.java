@@ -41,7 +41,7 @@ public class GraphGenerator {
 
         }
         lines.add("}");
-        Path out = Paths.get("./out/production/resources/dot-files/graph.dot");
+        Path out = Paths.get("graph.dot");
 
         try {
             Files.write(out, lines, Charset.defaultCharset());
@@ -49,7 +49,7 @@ public class GraphGenerator {
             e.printStackTrace();
         }
         try {
-            Process p = Runtime.getRuntime().exec("dot -Tpng -o./out/production/resources/images/graph.png ./out/production/resources/dot-files/graph.dot");
+            Process p = Runtime.getRuntime().exec("dot -Tpng -ograph.png graph.dot");
             try {
                 p.waitFor();
             } catch (InterruptedException e) {
