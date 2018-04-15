@@ -11,11 +11,6 @@ public class SimplifiedTruthTableBuilder {
 
     private List<Map<Character, Character>> notSimplifiedTruthTable;
 
-    // Used when a true row couldn't be simplified, so we indicate and store this row for later display
-    private boolean rowWasSimplified = false;
-
-    private List<Map<Character, Character>> notFullySimplifiedRows = new ArrayList<>();
-
     public SimplifiedTruthTableBuilder(List<Map<Character, Integer>> truthTable) {
 
         notSimplifiedTruthTable = Utils.convertTruthTableType(truthTable);
@@ -34,8 +29,6 @@ public class SimplifiedTruthTableBuilder {
 
         // Set the results that evaluate to false, used to be merged with the final simplified table
         List<Map<Character, Character>> truthTableWithFalseResult = separatedResults.get(1);
-        List<Integer> a = new ArrayList<>();
-        List<Map<Character, Character>> notFullySimplifiedRowsTemp = new ArrayList<>();
 
         while (true) {
             for (int i = 0; i < notSimplifiedTruthTableWithTrueResults.size() - 1; i++) {
@@ -50,21 +43,9 @@ public class SimplifiedTruthTableBuilder {
 
                         if (!isDuplicate(simplifiedTruthTable, simplifiedRow)) {
                             simplifiedTruthTable.add(simplifiedRow);
-
-                            rowWasSimplified = true;
-                            a.add(j);
-
                         }
                     }
                 }
-                if (!rowWasSimplified) {
-                    if (!a.contains(i)) {
-                        notFullySimplifiedRowsTemp.add(notSimplifiedTruthTableWithTrueResults.get(i));
-
-                    }
-                }
-                rowWasSimplified = false;
-                a.clear();
             }
 
             // If nothing was simplified
@@ -72,8 +53,6 @@ public class SimplifiedTruthTableBuilder {
                 simplifiedTruthTable = notSimplifiedTruthTableWithTrueResults;
                 break;
             } else {
-                notFullySimplifiedRows.addAll(notFullySimplifiedRowsTemp);
-                notFullySimplifiedRowsTemp = new ArrayList<>();
                 notSimplifiedTruthTableWithTrueResults = simplifiedTruthTable;
                 simplifiedTruthTable = new ArrayList<>();
             }
@@ -82,7 +61,6 @@ public class SimplifiedTruthTableBuilder {
         // The final result consists of the combination between the false results and the simplified true results
         List<Map<Character, Character>> finalResult = new ArrayList<>();
         finalResult.addAll(truthTableWithFalseResult);
-//        finalResult.addAll(notFullySimplifiedRows);
         finalResult.addAll(simplifiedTruthTable);
 
         return finalResult;
