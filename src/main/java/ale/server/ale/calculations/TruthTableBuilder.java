@@ -49,6 +49,7 @@ public class TruthTableBuilder {
 
     /**
      * Binary tree evaluation
+     * Uses recursion
      */
     private int evaluateTree(int rootIndex, Node[] arrayTree) {
 
@@ -80,6 +81,13 @@ public class TruthTableBuilder {
 
     }
 
+    /**
+     *
+     * @param root contains the operator
+     * @param left contains the first binary value
+     * @param right contains the second binary value
+     * @return the result of applying the operator(root) between the left and the right value
+     */
     private int getBinaryResult(Node root, int left, int right) {
         char rootValue = root.getValue();
         switch (rootValue) {
@@ -142,7 +150,7 @@ public class TruthTableBuilder {
     /**
      * Fills in the truth table with all the different combinations, later used to compute formula result
      *
-     * @return A list of maps. Each list values is a row in the truth table and the map represents the values in this row
+     * @return A list of maps. Each list values is a row in the truth table and a map represents the values in this row
      */
     private List<Map<Character, Integer>> fillTruthTableWithVariableData() {
         // Declarations
@@ -170,7 +178,9 @@ public class TruthTableBuilder {
         return truthTable;
     }
 
-
+    /**
+     * Generates hash code by using the result of each truth table row
+     */
     public String generateHash(List<Map<Character, Integer>> truthTable) {
         String binaryString = "";
         for (int i = truthTable.size() - 1; i >= 0; i--) {

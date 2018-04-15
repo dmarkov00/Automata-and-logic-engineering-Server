@@ -38,6 +38,9 @@ public class FormulaReader {
         readConvertedFormula(formula);
     }
 
+    /**
+     * This method is required because the formula is received via http and some special symbols need decoding
+     */
     private StringBuilder convertFormula(Formula formula) {
 
         String parsedFormula = "";
@@ -48,6 +51,8 @@ public class FormulaReader {
             int dataLength = notParsedFormula.length();
             while (incrementer < dataLength) {
                 char characterAt = notParsedFormula.charAt(incrementer);
+
+                // Necessary fix, when % signs are sent
                 if (characterAt == '%') {
                     tempBuffer.append("<percentage>");
                 } else {

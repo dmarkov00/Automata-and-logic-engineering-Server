@@ -24,7 +24,6 @@ public class AssignmentsManager {
                 return this.getAssignmentFourResult();
 
             case 5:
-
                 return this.getAssignmentFiveResult();
             default:
 

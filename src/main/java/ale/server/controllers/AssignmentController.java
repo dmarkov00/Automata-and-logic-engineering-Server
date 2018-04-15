@@ -17,7 +17,9 @@ public class AssignmentController {
     {
         AssignmentsManager assignmentsManager = new AssignmentsManager();
 
+        // Get result based on the formula and the assignment number
         AssignmentResult assignmentResult = assignmentsManager.generateAssignmentResult(formula, assignmentNr);
+
         if (assignmentResult == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         } else {
